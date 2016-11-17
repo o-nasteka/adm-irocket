@@ -21,7 +21,7 @@
     <div class="container">
         <div class="navbar-header">
             <a class="navbar-brand" href="/" target="_blank"><?=Config::get('site_name')?> - <?=__('lng.admin', 'Admin Section')?></a>
-            <div class="navbar-brand">User: <?php print_r($_SESSION['login']); ?></div>
+            <!--<div class="navbar-brand">User: <?php print_r($_SESSION['login']); ?></div>-->
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <?php if ( Session::get('login') ) { ?>
@@ -35,7 +35,7 @@
     </div>
 </nav>
 
-<div class="container">
+<div class="row">
 
     <div class="starter-template">
 
