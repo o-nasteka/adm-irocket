@@ -1,0 +1,29 @@
+<br>
+<br>
+<h3>Редактировать</h3><br/>
+
+<div class="form-group">
+    <label for="title">Изображение контента </label>
+    <img src="<?=$data['gallery']['img']?>"  width="940" height="450" class="img-responsive" alt="Responsive image">
+</div>
+<p><a href="/admin/gallery/"><button class="btn btn-primary" style="padding: 5px 20px;">Вернуться назад</button></a></p>
+<br>
+<p><strong>Выберите файл для обновления изображения</strong></p>
+<form action="" method="post" enctype="multipart/form-data" >
+    <input type="hidden" name="id" value="<?=$data['gallery']['id']?>" >
+    <input type="file" name="files"  ><br>
+    <input type="submit" name="img_upd" value="Обновить изображение" class="btn btn-success" >
+</form>
+<br>
+<br>
+<form method="post" action="">
+    <div class="form-group">
+        <label for="title">Название (описание фото)</label>
+        <input type="text" id="title" name="title" value="<?=htmlspecialchars(@$data['gallery']['title'])?>" class="form-control"  />
+    </div>
+
+    <input type="submit" name="submit" value="Обновить название" class="btn btn-success" />
+
+</form>
+
+

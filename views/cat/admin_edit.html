@@ -1,0 +1,153 @@
+<br>
+<br>
+<br>
+
+<h3>Редактировать категорию: <?=htmlspecialchars(@$data['cat']['title'])?></h3><br/>
+<form method="post" action="">
+    <ul class="nav nav-pills">
+        <li class="active"><a data-toggle="tab" href="#data1">Общие </a></li>
+        <li><a data-toggle="tab" href="#data2">Изображение</a></li>
+        <li><a data-toggle="tab" href="#data3">Описание</a></li>
+    </ul>
+    <br><br>
+    <div class="tab-content">
+        <!-- Общие -->
+        <div class="tab-pane fade in active" id="data1"><!-- data1 -->
+            <div class="form-group">
+                <label for="title">Название категории</label>
+                <input type="text" id="title" name="title" value="<?=htmlspecialchars(@$data['cat']['title'])?>" class="form-control"  />
+            </div>
+            <div class="form-group">
+                <label for="price">Цена в USD от</label>
+                <input maxlength="30" type="text" id="price" name="price" value="<?=htmlspecialchars(@$data['cat']['price'])?>" class="form-control"  />
+            </div>
+            <div class="form-group">
+                <label for="unit">Единицы измерения</label>
+                <input maxlength="30" type="text" id="unit" name="unit" value="<?=htmlspecialchars(@$data['cat']['unit'])?>" class="form-control"  />
+            </div>
+
+            <!-- Родительская категория -->
+            <div class="form-group">
+                <label for="parent">Родительская категория</label>
+                <select class="form-control" name="parent" id="parent" required="">
+                    <option selected value="<?=htmlspecialchars(@$data['cat']['parent'])?>">
+                        <?php
+
+                        $parent = $data['cat']['parent']; // id родительской категории
+                        $title = $data['cat']['title'];  // title категории
+
+                        if( $parent == 0){
+                            echo $title;
+                        }
+
+                        elseif( $parent == 1){
+                            echo "Жалюзи";
+                        }
+                        elseif ( $parent == 13 ){
+                            echo "Ролеты";
+                        }
+                        elseif ( $parent == 33 ){
+                            echo "Плиссе";
+                        }
+                        elseif ( $parent == 38 ){
+                            echo "Антимоскитные сетки";
+                        }
+                        elseif ( $parent == 42 ){
+                            echo "Внешние системы солнцезащиты";
+                        }
+
+                        ?>
+                    </option>
+
+                    <?php if( $parent != 1 && $parent > 0 ){ ?>
+                        <option value="1">Жалюзи</option>
+                    <?php } ?>
+                    <?php if( $parent != 13 && $parent > 0 ){ ?>
+                        <option value="13">Ролеты</option>
+                    <?php } ?>
+                    <?php if( $parent != 33 && $parent > 0 ){ ?>
+                        <option value="33">Плиссе</option>
+                    <?php } ?>
+                    <?php if( $parent != 38 && $parent > 0 ){ ?>
+                        <option value="38">Антимоскитные сетки</option>
+                    <?php } ?>
+                    <?php if( $parent != 42 && $parent > 0 ){ ?>
+                        <option value="42">Внешние системы солнцезащиты</option>
+                    <?php } ?>
+
+                        ?>
+                    <?php
+                    if( $parent == 0){ ?>
+                        <option value="0">Жалюзи</option>
+                        <option value="0">Ролеты</option>
+                        <option value="0">Плиссе</option>
+                        <option value="0">Антимоскитные сетки</option>
+                        <option value="0">Внешние системы солнцезащиты</option>
+
+                    <?php }
+                    ?>
+
+                </select>
+            </div>
+
+        </div>
+        <!-- -->
+
+        <div class="tab-pane fade in" id="data2"><!-- data2 -->
+            <div class="form-group">
+                <!-- Большое изображение категории /products/view_subcategory/ -->
+                <label for="img_child">Большое изображение категории:</label>
+                <textarea style="min-height: 300px;" id="img_parent" name="img_parent" class="form-control" >
+                    <?=$data['cat']['img_parent']?>
+                </textarea>
+                <br>
+                <!-- Малое изображение дочерней категории /products/view_sub/ -->
+                <label for="img_child">Малое изображение категории:</label>
+                <textarea style="min-height: 300px;" id="img_child" name="img_child" class="form-control" >
+                    <?=$data['cat']['img_child']?>
+                </textarea>
+                <!--  -->
+            </div>
+        </div>
+
+
+        <div class="tab-pane fade in" id="data3"><!-- data3 -->
+            <div class="form-group">
+                <!-- Описание категории /products/view_sub/ -->
+                <label for="content_short">Описание категории:</label>
+                <textarea style="min-height: 300px;" id="content_short" name="content_short" class="form-control" >
+                    <?=$data['cat']['content_short']?>
+                </textarea>
+                <!--  -->
+                <br>
+                <!-- Краткое описание при наведении мыши в разделе категории /products/view_subcategory/ -->
+                <label for="description">Описание категории <i style="font-weight: 400;">(появляется при наведении мыши)</i>:</label>
+                <textarea style="min-height: 300px;" id="description" name="description" class="form-control" >
+                    <?=$data['cat']['description']?>
+                </textarea>
+
+
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+    <input type="hidden" name="id" value="<?=$data['cat']['id']?>" />
+    <input type="submit" class="btn btn-success" value="Сохранить" />
+    <a href="/admin/cat/"><input type="button" class="btn btn-primary" value="Отмена"></a>
+    <br>
+    <br>
+
+
+</form>
+
+<script>
+    CKEDITOR.replace( 'img_parent' );
+    CKEDITOR.replace( 'img_child' );
+    CKEDITOR.replace( 'description' );
+    CKEDITOR.replace( 'content_short' );
+</script>

@@ -1,0 +1,87 @@
+<br>
+<br>
+<br>
+
+
+
+<?php
+    // Получаем текущий курс валют
+    $ex_rate = Currency::getCurrency();
+    foreach($ex_rate as $value){
+        $currency = $value['rate'];
+    }
+?>
+<div class="row">
+    <div class="col-md-4 pull-left">
+        <h3>Товары</h3>
+    </div>
+    <div class="col-md-2 pull-right">
+        <table class="table table-bordered">
+            <tr>
+                <td><h4>Курс валют:</h4></td>
+            </tr>
+            <tr>
+                <td><p class="text-left"><?=$currency?> грн.</p></td>
+            </tr>
+        </table>
+
+
+    </div>
+</div>
+<br/>
+
+
+<form action="" method="post">
+
+    <div class="form-group">
+        <label for="sel1">Категория товара:</label>
+        <div class="row">
+            <div class="col-md-4">
+                <select class="form-control" id="sel1" name="sort" required>
+                    <?php if(isset($_POST['sort'])){ $_SESSION['sort'] = $_POST['sort']; }?>
+                    <?php if($_SESSION['sort'] == 1){echo '<option selected value="1">';}else{ echo '<option value="1">'; } ?> Жалюзи</option>
+                    <?php if($_SESSION['sort'] == 2){echo '<option selected value="2">';}else{ echo '<option value="2">'; } ?>Ролеты</option>
+                    <?php if($_SESSION['sort'] == 3){echo '<option selected value="3">';}else{ echo '<option value="3">'; } ?>Плиссе</option>
+                    <?php if($_SESSION['sort'] == 4){echo '<option selected value="4">';}else{ echo '<option value="4">'; } ?>Антимоскитные сетки</option>
+                    <?php if($_SESSION['sort'] == 5){echo '<option selected value="5">';}else{ echo '<option value="5">'; } ?>Внешние системы солнцезащиты</option>
+                    <?php if($_SESSION['sort'] == 6 || !isset($_SESSION['sort'])){echo '<option selected value="6">';}else{ echo '<option value="6">'; } ?>Все товары</option>
+                </select>
+            </div>
+        </div>
+
+    </div>
+
+
+    <button type="submit" name="submit" class="btn btn-primary">Выбрать</button>
+</form>
+<br>
+<br>
+<table class="table table-bordered table-striped table-hover" style="width: 80%; border: 1px solid #ccc;">
+    <tr>
+        <td><strong>ID</strong></td>
+        <td><strong>Название</strong></td>
+        <td><strong>Цена в USD</strong></td>
+        <td style="padding-left: 15px;">Управление</td>
+    </tr>
+    <?php foreach($data['products'] as $products_data) { ?>
+    <tr>
+        <td><?=$products_data['id']?></td>
+        <td><?=$products_data['title']?></td>
+        <td><?=$products_data['price']?> $</td>
+        <td width="250" align="center">
+            <a href="/admin/products/edit/<?=$products_data['id']?>"><button class="btn btn-sm btn-primary" style="padding: 5px 20px;">Редактировать</button></a>
+            <a href="/admin/products/delete/<?=$products_data['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning" style="padding: 5px 20px;">Удалить</button></a>
+        </td>
+    </tr>
+    <?php } ?>
+</table>
+
+<br/>
+
+<div>
+    <a href="/admin/products/add/"><button class="btn btn-sm btn-success">Добавить товар</button></a>
+</div>
+
+<br>
+<br>
+<br>

@@ -1,0 +1,300 @@
+<!-- Header 2 Style -->
+<style type="text/css">.header-in{width:100%;height:300px;padding-bottom:20px;background:url(/images/header-in-bg-01.jpg) center no-repeat #384550;background-size:cover}.header-in h2{width:75%;padding:5px 40px;background:rgba(255,255,255,.5);color:#2c3341;text-align:center;margin:45px auto 0;font-size:36px}.header-in .calc-in{width:100%;height:auto;min-height:160px;background:rgba(56,69,80,.6);margin-top:46px;padding:23px 0 20px}.header-in .calc-in hr{width:145px;margin-top:0}.header-in input{width:180px!important;height:40px;border:none!important;border-radius:0!important;margin:0;text-align:right}.header-in label{color:#fff;font-weight:300;font-size:16px;margin:10px 10px 0 0}.header-in .lb2{margin-left:10px}.header-in .btn{width:287px;height:40px;background-color:#23d5d4;color:#fff;font-size:20px;font-weight:500;text-transform:uppercase;border-radius:0!important;border:none!important;margin-left:35px}.header-in .btn:hover{text-decoration:underline;background-color:#23d5d4}.header-in .btn-group .btn{font-size:18px;margin-left:85px}.header-in .btn-group .btn:hover{text-decoration:underline;background-color:#23d5d4!important}.header-in .dropdown-menu>li{width:198px}</style>
+<!-- Header 2 Style end-->
+
+<!-- Blank section -->
+<div class="container-fluid blank-section">
+
+</div>
+<!-- Blank section end-->
+
+<!-- header-in -->
+<div class="container-fluid header-in our" >
+    <div class="w970">
+        <h2>Выберите тип жалюзи:</h2>
+    </div>
+
+    <div class="calc-in">
+        <div class="w970">
+            <form class="">
+                <h4 class="white text-left pull-left">Укажите размер:</h4>
+                <!-- <h4 class="white text-left pull-right">Выберите тип:</h4> -->
+                <br><br>
+                <hr class="pull-left">
+                <div class="clr"></div>
+                <div class="form-group pull-left">
+                    <label class="pull-left" for="InputWidth">Ширина:</label>
+                    <input type="text" class="form-control pull-left" id="InputWidth" placeholder="мм" >
+                </div>
+                <div class="form-group pull-left">
+                    <label for="InputHeight" class="pull-left lb2">Высота:</label>
+                    <input type="text" class="form-control pull-left" id="InputHeight" placeholder="мм" >
+                </div>
+                <!-- <button type="submit" class="btn btn-default">Просчитать!</button> -->
+                <!-- Single button -->
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Выберите тип <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu sub-type">
+                        <li><a href="/products/view_sub/1">- Жалюзи</a></li>
+                        <li><a href="/products/view_sub/13">- Ролеты</a></li>
+                        <li><a href="/products/view_sub/33">- Плиссе</a></li>
+                        <li><a href="/products/view_sub/38">- Антимоскитные сетки</a></li>
+                        <li><a href="/products/view_sub/42">- Внешние системы солнцезащиты</a></li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- header-in end -->
+
+<div>
+
+
+</div>
+
+
+<!-- type -->
+<div class="container-fluid type">
+    <div class="w970">
+        <h2 class="text-center">
+            В нашем салоне представлен большой <br>
+            выбор изделий:
+        </h2><br>
+        <!-- -->
+        <div class="goods-bl">
+            <!-- -->
+            <?php foreach($data['sub_all'] as $data){ ?>
+            <?php  if($data['id'] == 15){break;}?> <!-- Ограничение вывода подкатегорий по id category_sub -->
+
+
+            <a href="/products/view_sub/<?=@$data['id']?>">
+                <div class="cat-bl" >
+
+                    <div class="img-bl">
+                        <?=$data['img_parent']?>"
+                    </div>
+                    <div class="title"><?=@$data['title']?></div>
+
+                    <p class="price-from2">
+                        <?php // echo @$data['price_from']; ?>
+                        от
+                        <?php
+                            // Получаем текущий курс валют
+                            $ex_rate = Currency::getCurrency();
+                             foreach($ex_rate as $value){
+                                $currency = $value['rate'];
+                             }
+                            // Цена в USD
+                            $usd_price = $data['price'];
+                             $price = $usd_price * $currency;
+                             echo round($price, 0); // округление до 2х знаков
+                        ?>
+                        грн./<?=$data['unit']?>
+                    </p>
+
+                    <div class="cat-in-bl">
+
+                        <?=@$data['description']?>
+
+                        <button class="btn cat-btn center-block">Посмотреть</button>
+                    </div>
+                </div>
+            </a>
+            <?php } ?>
+            <!-- -->
+
+        </div>
+        <!-- -->
+        <div class="clr"></div>
+        <a href="#modal" class="call-modal"><button type="submit" class="btn-goods center-block">ЗАКАЗАТЬ БЫСТРЫЙ ПРОСЧЕТ!</button></a>
+    </div>
+</div>
+<!-- type end-->
+
+<!-- Reviews -->
+<div class="container-fluid section-8">
+    <div class="w970">
+        <br>
+        <h2 class="white text-center">Отзывы наших клиентов:</h2>
+        <br>
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <div class="otz-bl">
+                        <div class="pull-left">
+                            <p class="title otz-img otz-01">
+                                Владимир Козлов <br>
+                                <span class="date">21.04.2013</span>
+                            </p>
+                            <p class="txt">
+                                В салоне понятие качества сопровождается во всем: в изделиях,
+                                установке, гарантии и самое главное в общении с клиентом.
+                                Уже не раз обращался в салон и подсаживаю всех знакомых.
+                                Это сервис к которому необходимо стремится многим!
+                                <br><br>
+                                <span class="btn-link">https://www.facebook.com/vladimir.kozlov.313</span>
+                            </p>
+                        </div>
+                        <!-- -->
+                        <div class="pull-right">
+                            <p class="title otz-img otz-02">
+                                Светлана Онищук <br>
+                                <span class="date">12.05.2015</span>
+                            </p>
+                            <p class="txt">
+                                К Вам в Салон порекомендовали обратится друзья. Мы даже не искали кого-то другого,
+                                просто позвонили и договорились за замер. Оперативно приехали, выбрали, все красиво
+                                установили. В общем - хороший сервис за умеренные деньги! Спасибо!
+                                <br><br>
+                                <span class="btn-link">http://vk.com/id9845337</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="otz-bl">
+                        <div class="pull-left">
+                            <p class="title otz-img otz-03">
+                                Кирилл Кулаков <br>
+                                <span class="date">11.07.2014</span>
+                            </p>
+                            <p class="txt">
+                                Анюта, спасибо тебе за красоту!) Мне нравится с тобой работать - вертикалку в офис
+                                повесить - не проблема - 2 дня и готово! Тканевые ролетики домой - тоже не вопрос!)
+                                Так держать!)
+                                <br><br>
+                                <span class="btn-link">https://www.facebook.com/profkurs</span>
+                            </p>
+                        </div>
+                        <!-- -->
+                        <div class="pull-right">
+                            <p class="title otz-img otz-04">
+                                Алевтина <br>
+                                <span class="date">03.06.2015</span>
+                            </p>
+                            <p class="txt">
+                                Долго искали защиту от солнца и тепла в детскую. После консультации в Салоне
+                                остановили свой выбор на тканевых ролетах с особой тканью Термо Блокер.
+                                <br><br>
+                                Теперь у нашего ребенка в комнате комфортная температура и тень, кондиционер не нужен!
+                                С закрытыми ролетами даже в самый солнцепек в комнате прохладно.
+                                Очень хорошее
+                                решение проблемы!
+                                <br><br>
+                                <span class="btn-link">Отзыв прислали на почту</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <!-- -->
+                <div class="item">
+                    <div class="otz-bl">
+                        <div class="pull-left">
+                            <p class="title otz-img otz-05">
+                                Diana Ivashkovska <br>
+                                <span class="date">07.07.2015</span>
+                            </p>
+                            <p class="txt">
+                                Всем доброго времени суток! Не могла не удержаться, чтобы оставить коммент по
+                                поводу работы "Салона"... Заказывала жалюзи. Ребята большие молодцы! Помогли с
+                                выбором, сделали замеры, установили все в оговоренные сроки. Соотношение
+                                цена/качество - оптимальное. <br><br>
+                                Уровень обслуживания - прекрасный.
+                                К каждому заказу подходят индивидуально, клиент - на первом месте,
+                                чувствуется должное внимание. Отдельное спасибо монтажнику Виталию и
+                                менеджеру, который координировал его работу. Ребята большие умнички! Советую всем!
+                                <br><br>
+                                <span class="btn-link">https://www.facebook.com/diana.ivashkovska</span>
+                            </p>
+                        </div>
+                        <!-- -->
+                        <div class="pull-right">
+                            <p class="title otz-img otz-06">
+                                Дмитрий Першаков<br>
+                                <span class="date">15.08.2015</span>
+                            </p>
+                            <p class="txt">
+                                Спасибо менеджеру за помощь в идеях оформления! Изначально очень тяжело было
+                                определится с вариантом, но после 5 минут общения я понял - хочу только День-Ночь!
+                                Получилось очень стильно и оригинально!
+                                <br><br>
+                                <span class="btn-link">http://vk.com/dpershakov</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <!-- -->
+                <div class="item">
+                    <div class="otz-bl">
+                        <div class="pull-left">
+                            <p class="title otz-img otz-07">
+                                Геннадий Гоменюк <br>
+                                <span class="date">18.07.2015</span>
+                            </p>
+                            <p class="txt">
+                                Хотел сделать супруге подарок к окончанию ремонта - выбрать тканевые ролеты. Выбирали,
+                                наверное, всем коллективом Салона минут 20.
+                                Результат получился отличным - жене все понравилось. <br><br>
+                                Плюс, очень хорошо все вписалось
+                                в интерьер. Уже когда мастер приехал устанавливать тканевые ролеты, мы вспомнили,
+                                что хотели антимоскитные сетки. Сделали за 1 день, я просто приехал и забрал.
+                                Команда Салона - спасибо!
+                                <br><br>
+                                <span class="btn-link">https://www.facebook.com/gennady.gomenyuk.9</span>
+                            </p>
+                        </div>
+                        <!-- -->
+                        <!-- -->
+                        <div class="pull-right">
+                            <p class="title otz-img otz-08">
+                                Ириска Подуст <br>
+                                <span class="date">01.09.2015</span>
+                            </p>
+                            <p class="txt">
+                                Получила большое удовольствие от заказа тканевых ролет. Все, начиная от милой улыбки
+                                менеджера салона до конечного результата, приятно удивило. <br><br>
+                                Понравился большой выбор
+                                красивых тканей и видов тканевых ролет, менеджер салона помог определится с выбором
+                                среди всего разнообразия. Оформили заказ. Все сделали оперативно и качественно. Теперь
+                                любуюсь дома красотой и без проблем спасаюсь от палящего в окна солнца.
+                                <br><br>
+                                <span class="btn-link">http://vk.com/id27376094</span>
+                            </p>
+                        </div>
+                        <!-- -->
+                    </div>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+            </div>
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            </ol>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <a href="/pages/view/Контакты"><button class="btn btn-otz center-block">Посетить шоурум в Киеве <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></button></a>
+    </div>
+</div>
+<!-- Reviews end-->

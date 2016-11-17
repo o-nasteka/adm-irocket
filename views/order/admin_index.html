@@ -1,0 +1,125 @@
+<br>
+<br>
+<br>
+
+
+
+<h3>Orders from site</h3><br/>
+
+<!--<div class="container">-->
+    <!--<div class="row">-->
+        <!--<div class="col-lg-12">-->
+
+
+
+
+        <div class="ovrer">
+            <table class="table table-bordered table-striped table-hover">
+                <tr>
+                    <td> <strong>#</strong> </td>
+                    <td> <strong>Дата/время</strong> </td>
+                    <td> <strong>Город</strong> </td>
+                    <td> <strong>Имя</strong> </td>
+                    <td> <strong>Телефон</strong> </td>
+                    <td> <strong>email</strong> </td>
+                    <td> <strong>Пакет</strong> </td>
+                    <td> <strong>С какой формы</strong> </td>
+                    <td> <strong>Комментарии 1</strong> </td>
+                    <td> <strong>Комментарии 2</strong> </td>
+                    <td> <strong>UTM</strong> </td>
+                    <!--<td style="width: 10%;"> <strong>From</strong> </td>-->
+                    <td style="width: 10%;"> <strong>Статус</strong> </td>
+                    <td style="width: 15%;"> <strong>Управление</strong> </td>
+                </tr>
+                <?php foreach($data['item'] as $item) { ?>
+                <tr>
+                    <td><?=$item['id']?></td>
+                    <td><?=$item['date']?></td>
+                    <td><?=$item['city']?></td>
+                    <td><?=$item['name']?></td>
+                    <td><?=$item['phone']?></td>
+                    <td><?=$item['email']?></td>
+                    <td><?=$item['package']?></td>
+                    <td><?=$item['from_form']?></td>
+                    <td><?=$item['comment1']?></td>
+                    <td><?=$item['comment2']?></td>
+                    <td><?=$item['utm']?></td>
+                    <!--<td><?=$item['title']?></td>-->
+
+                    <!-- Статус заказ  // Order status -->
+                    <?php
+
+        if($item['status'] == 0){?>
+                    <td><?php echo "Новый";?></td>
+                    <?php }
+
+        elseif($item['status'] == 1){?>
+                    <td class="bg_oplt_suc"><?php echo "Успешная оплата";?></td>
+                    <?php }
+
+        elseif($item['status'] == 2){?>
+                    <td class="bg_send"><?php echo "Отправлен счет";?></td>
+                    <?php }
+
+        elseif($item['status'] == 3){?>
+                    <td class="bg_cenc"><?php echo "Отмена";?></td>
+                    <?php }
+
+        elseif($item['status'] == 4){?>
+                    <td class="bg_phone"><?php echo "Прозвон";?></td>
+                    <?php }
+
+        ?>
+                    <!-- Статус заказ  // Order status end -->
+
+                    <td width="250" align="center">
+                        <a href="/admin/order/edit/<?=$item['id']?>"><button class="btn btn-sm btn-primary" style="padding: 5px 20px;">Редактировать</button></a>
+                        <!--<a href="/admin/order/delete/<?=$item['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning" style="padding: 5px 20px;">Delete</button></a>-->
+                    </td>
+                </tr>
+                <?php } ?>
+            </table>
+        </div>
+
+
+
+
+
+<script>
+
+
+
+</script>
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
+
+
+
+
+<!-- pagination -->
+<?php if($data['count'] > $data['limit']) { ?>
+<nav>
+    <ul class="pagination">
+        <?php $prev = $data['start'] - $data['limit'];
+                            if($prev >= 0){ ?>
+        <li>
+            <a href="/admin/order/index/start/<?php echo ($data['start'] - $data['limit']); ?>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <?php } ?>
+        <?php echo @$data[html]; ?>
+
+        <?php $next = ($data['count'] - $data['start']) - $data['limit'];
+                         if($next > 0 ){ ?>
+        <li>
+            <a href="/admin/order/index/start/<?php echo ($data['start'] + $data['limit']); ?>" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        <?php } ?>
+    </ul>
+</nav>
+<?php } ?>
+<!-- pagination end -->

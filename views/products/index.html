@@ -1,0 +1,37 @@
+
+<!-- Blank section -->
+<div class="container-fluid blank-section">
+
+</div>
+<!-- Blank section end-->
+
+<!-- Type type -->
+<div class="container-fluid h-type">
+    <div class="w970">
+        <h2 class="text-center">
+        </h2>
+        <!-- -->
+        <!-- Вывод блоков подкатегорий  -->
+        <?php foreach($data['products'] as $data){ ?>
+        <div class="type-in">
+            <!-- Ссылка на все товары этой подкатегории  -->
+            <a href="/products/view/<?=$data['alias']?>">
+                <div class="type-in-bl">
+                    <div class="type-in-img">
+                        <button class="btn-in">Посмотреть!</button>
+                        <img src="<?=$sub_data['img']?>" />
+                    </div>
+                    <!-- Заголовок подкатегории -->
+                    <p class="title"><?=@$data['title']?></p>
+                    <!-- Описание подкатегории -->
+                    <p class="txt">
+                        <?=@$data['content_short']?>
+                    </p>
+                </div>
+            </a>
+        </div>
+        <?php } ?>
+        <!-- -->
+        <button type="submit" class="btn-goods center-block">ЗАКАЗАТЬ БЫСТРЫЙ ПРОСЧЕТ!</button>
+    </div>
+</div><!-- Type end-->

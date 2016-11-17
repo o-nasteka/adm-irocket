@@ -1,0 +1,54 @@
+<br>
+<br>
+<br>
+
+<h3>Добавить заявку</h3><br/>
+<form method="post" action="">
+    <input type="hidden" name="id" value="<?=$data['order']['id']?>" />
+
+    <div class="form-group">
+        <label for="city">Город</label>
+        <input type="text" id="city" name="city" value="" maxlength="25" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="name">Имя</label>
+        <input type="text" id="name" name="name" value="" maxlength="25" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="phone">Телефон</label>
+        <input type="text" id="phone" name="phone" value="" maxlength="15" class="form-control"  />
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" value="" class="form-control"  />
+    </div>
+    <div class="form-group">
+        <label for="package">Пакет</label>
+        <input type="text" id="package" name="package" value="" class="form-control"  />
+    </div>
+    <!--<div class="form-group">-->
+        <!--<label for="form_from">From form</label>-->
+        <!--<input type="text" id="form_from" name="form_from" value="" class="form-control"  />-->
+    <!--</div>-->
+    <div class="form-group">
+        <label for="comment1">Комментарии 1</label>
+        <textarea class="form-control" rows="5" id="comment1" name="comment1"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="comment2">Комментарии 2</label>
+        <textarea class="form-control" rows="5" id="comment2" name="comment2"></textarea>
+    </div>
+
+    <input type="submit" class="btn btn-success" name="add_ord" value="Сохранить">
+
+    <a href="/admin/order/"><input type="button" class="btn btn-warning" value="Cancel"></a>
+
+    <script>
+        // CKEDITOR.replace( 'content_short' );
+        // CKEDITOR.replace( 'gallery_img' );
+        // config.height = '500px';
+    </script>
+
+</form>
+
+

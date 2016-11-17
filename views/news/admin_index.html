@@ -1,0 +1,62 @@
+<br>
+<br>
+
+<h2>Акции и новости</h2>
+<br>
+
+<table class="table table-bordered table-striped " style="width: 80%; border: 1px solid #ccc;">
+    <tr>
+        <td>ID</td>
+        <td>Название</td>
+        <td>Изображение</td>
+        <td style="padding-left: 15px;">Управление</td>
+
+
+    </tr>
+    <?php foreach($data['news'] as $news) { ?>
+    <tr>
+        <td><strong><?=$news['id']?></strong></td>
+        <td><strong><?=$news['title']?></strong></td>
+        <td><strong> <img src="<?=$news['img_min']?>"  width="200" height="250"  class="img-responsive" alt="Responsive image"></strong></td>
+        <td width="250" align="center">
+            <a href="/admin/news/edit/<?=$news['id']?>"><button class="btn btn-sm btn-primary" style="padding: 5px 20px;">Редактировать</button></a>
+            <a href="/admin/news/index/delete/<?=$news['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning" style="padding: 5px 20px;">Удалить</button></a>
+        </td>
+
+    </tr>
+    <?php } ?>
+</table>
+
+<br/>
+
+<div>
+    <a href="/admin/news/add/"><button class="btn btn-sm btn-success">Добавить новую новость</button></a>
+</div>
+
+
+
+
+<?php if($data['count'] > $data['limit']) { ?>
+<nav>
+    <ul class="pagination">
+        <?php $prev = $data['start'] - $data['limit'];
+                            if($prev >= 0){ ?>
+        <li>
+            <a href="/admin/news/index/start/<?php echo ($data['start'] - $data['limit']); ?>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <?php } ?>
+        <?php echo @$data[html]; ?>
+
+        <?php $next = ($data['count'] - $data['start']) - 5;
+                         if($next > 0 ){ ?>
+        <li>
+            <a href="/admin/news/index/start/<?php echo ($data['start'] + $data['limit']); ?>" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        <?php } ?>
+    </ul>
+</nav>
+<?php } ?>

@@ -1,0 +1,31 @@
+.bg_oplt_suc {
+    background-color: #00ff00;
+}
+
+.bg_send{
+    background-color: #269abc;
+}
+
+.bg_cenc{
+    background-color: #979797;
+}
+
+.bg_phone {
+    background-color: palevioletred;
+}
+
+.ovrer {
+    /*overflow-x: scroll;*/
+    padding: 3px;
+}
+
+.ovrer table {
+    width: 100%;
+    /*table-layout: auto;*/
+}
+.ovrer table td {
+    /*width: 20%;*/
+}
+
+
+

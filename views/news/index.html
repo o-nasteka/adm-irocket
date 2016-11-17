@@ -1,0 +1,148 @@
+<!-- Header 2 Style -->
+<style type="text/css">.header-in{width:100%;height:300px;padding-bottom:20px;background:url(/images/news-bl-bg.jpg) center no-repeat #384550;background-size:cover}.header-in h2{width:75%;padding:5px 40px;background:rgba(255,255,255,.5);color:#2c3341;text-align:center;margin:45px auto 0;font-size:36px}.header-in .calc-in{width:100%;height:auto;min-height:160px;background:rgba(56,69,80,.6);margin-top:46px;padding:23px 0 20px}.header-in .calc-in hr{width:145px;margin-top:0}.header-in input{width:180px!important;height:40px;border:none!important;border-radius:0!important;margin:0;text-align:right}.header-in label{color:#fff;font-weight:300;font-size:16px;margin:10px 10px 0 0}.header-in .lb2{margin-left:10px}.header-in .btn{width:287px;height:40px;background-color:#23d5d4;color:#fff;font-size:20px;font-weight:500;text-transform:uppercase;border-radius:0!important;border:none!important;margin-left:35px}.header-in .btn:hover{text-decoration:underline;background-color:#23d5d4}.header-in .btn-group .btn{font-size:18px;margin-left:85px}.header-in .btn-group .btn:hover{text-decoration:underline;background-color:#23d5d4!important}.header-in .dropdown-menu>li{width:198px}</style>
+<!-- Header 2 Style end-->
+
+<!-- Blank section -->
+<div class="container-fluid blank-section">
+
+</div>
+<!-- Blank section end-->
+
+<!-- header-in -->
+<div class="container-fluid header-in news-header" >
+    <div class="w970">
+        <h2>Акции и новости:</h2>
+    </div>
+
+    <div class="calc-in">
+        <div class="w970">
+            <form class="">
+                <h4 class="white text-left pull-left">Укажите размер:</h4>
+                <!-- <h4 class="white text-left pull-right">Выберите тип:</h4> -->
+                <br><br>
+                <hr class="pull-left">
+                <div class="clr"></div>
+                <div class="form-group pull-left">
+                    <label class="pull-left" for="InputWidth">Ширина:</label>
+                    <input type="text" class="form-control pull-left" id="InputWidth" placeholder="мм" >
+                </div>
+                <div class="form-group pull-left">
+                    <label for="InputHeight" class="pull-left lb2">Высота:</label>
+                    <input type="text" class="form-control pull-left" id="InputHeight" placeholder="мм" >
+                </div>
+                <!-- <button type="submit" class="btn btn-default">Просчитать!</button> -->
+                <!-- Single button -->
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Выберите тип <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu sub-type">
+                        <li><a href="/products/view_sub/1">- Жалюзи</a></li>
+                        <li><a href="/products/view_sub/13">- Ролеты</a></li>
+                        <li><a href="/products/view_sub/33">- Плиссе</a></li>
+                        <li><a href="/products/view_sub/38">- Антимоскитные сетки</a></li>
+                        <li><a href="/products/view_sub/42">- Внешние системы солнцезащиты</a></li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- header-in end -->
+
+
+
+<!-- News bl -->
+<div class="container-fluid news-bl">
+    <div class="w970">
+
+
+       <?php foreach($data['news'] as $news) { ?>
+        <!-- -->
+        <div class="row news-in">
+            <div class="col-md-6 col-xs-6">
+                <img src="<?=$news['img_min']?>" width="450" height="450" class="img-responsive" alt="Responsive image">
+            </div>
+            <div class="col-md-6 col-xs-6">
+                <h3><?=$news['title']?></h3>
+                <hr>
+                <p class="text-justify">
+                    <?=$news['content_min']?>
+
+                </p>
+                <?php
+                    if( isset($news['date_down']) && isset($news['date_up']) && ($news['date_down'] !== '') && ($news['date_up'] !== '') ){
+                    ?>
+                        <p class="promo_date">
+                            <strong>Период действия акции:</strong> <br>
+                            <?=@$news['date_down']?>  -  <?=@$news['date_up']?>
+                        </p>
+                    <?php
+                    }
+                ?>
+
+            </div>
+        </div>
+       <br>
+        <!-- -->
+        <?php } ?>
+
+
+
+        <div class="row">
+            <div class="col-md-6">
+
+                <!-- pagination -->
+                <?php if($data['count'] > $data['limit']) { ?>
+                <nav>
+                    <ul class="pagination">
+                        <?php $prev = $data['start'] - $data['limit'];
+                            if($prev >= 0){ ?>
+                        <li>
+                            <a href="/news/index/start/<?php echo ($data['start'] - $data['limit']); ?>" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <?php } ?>
+                        <?php echo @$data[html]; ?>
+
+                        <?php $next = ($data['count'] - $data['start']) - $data['limit'];
+                         if($next > 0 ){ ?>
+                        <li>
+                            <a href="/news/index/start/<?php echo ($data['start'] + $data['limit']); ?>" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                        <?php } ?>
+                    </ul>
+                </nav>
+                <?php } ?>
+            <!-- pagination end -->
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<!-- News bl end-->
+
+<!-- How -->
+<div class="container-fluid section-6 how-news">
+    <div class="w970">
+        <br>
+        <h2 class="text-center black">Как сделать заказ:</h2>
+        <div class="img-bl"></div>
+        <br>
+        <h4 class="black text-center">Заказ. Замер. Установка. <strong>Все очень просто!</strong></h4>
+        <a href="#modal" onclick="getElementById('idItem').value='Новости. Отправить заказ в работу';" class="call-modal"> <button type="submit" class="btn-how center-block">Отправить заказ в работу <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></button></a>
+
+    </div>
+</div>
+<!-- How end-->
+
+
+
+
+
+
+

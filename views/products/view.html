@@ -1,0 +1,347 @@
+<!-- Order page -->
+<div class="container-fluid order-bl">
+    <div class="w970">
+        <!-- Gallery -->
+        <div class="order-gallery pull-left">
+            <div class="prod-price">
+                <?php // echo $data['products']['price_from']; ?>
+                от
+                <?php
+                    // Получаем текущий курс валют
+                    $ex_rate = Currency::getCurrency();
+                     foreach($ex_rate as $value){
+                        $currency = $value['rate'];
+                     }
+                    // Цена в USD
+                    $usd_price = $data['products']['price'];
+                     $price = $usd_price * $currency;
+                     echo round($price, 0); // округление до 0 знаков
+                ?>
+                грн./<?=$data['products']['unit']?>
+            </div>
+
+            <div id="carousel-products" class="carousel slide" data-ride="carousel">
+
+                <!-- Wrapper for slides -->
+                <div class="carousel-inner" role="listbox">
+
+                    <!-- Картики слайдера, добавляем из админ-панели -->
+                    <?php foreach($data['products']['img_prod'] as $img_prod ){ ?>
+                    <?php if(!isset($a)){ echo '<div class="item active">'; $a = true; }else { echo '<div class="item">'; } ?>
+                    <img src="<?=$img_prod['img']?>" alt="Наши работы">
+                    <div class="carousel-caption">
+                        <!-- Описание фото -->
+                    </div>
+                </div>
+                    <?php } ?>
+
+                </div>
+
+                <!-- Controls -->
+                <a class="left carousel-control" href="#carousel-products" role="button" data-slide="prev">
+                    <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                </a>
+                <a class="right carousel-control" href="#carousel-products" role="button" data-slide="next">
+                    <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                </a>
+            </div>
+
+        </div>
+        <!-- Gallery end -->
+
+        <!-- Short Text Bl -->
+        <div class="order-txt-bl pull-left">
+            <h3 class="text-center"><?=$data['products']['title']?></h3>
+            <p class="order-short-txt">
+                <?=$data['products']['content_short']?>
+            </p>
+
+            <form action="/order/" method="POST">
+                <div class="main-form order-form">
+                    <h4 class="text-center tt_up white">БЫСТРЫЙ ЗАКАЗ</h4>
+                    <hr>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Имя" required />
+                    <input type="text" class="form-control" id="phone" name="phone" placeholder="Телефон" required />
+                    <button type="submit" class="btn-mainf">Узнать стоимость!</button>
+                    <input type="hidden" id="idItem" name="title" value="<?=$data['products']['title']?>" />
+                </div>
+            </form>
+
+
+        </div>
+        <!-- Short Text Bl end -->
+
+        <div class="clr"></div>
+
+        <!-- -->
+        <div class="order-main-txt">
+
+            <!-- Описание, Цвет, Тип системы -->
+            <div class="order-bl-in">
+                <ul class="nav nav-tabs">
+                    <li class="active"><a data-toggle="tab" href="#panel1">Описание</a></li>
+                    <li><a data-toggle="tab" href="#panel2">Цвет</a></li>
+                    <li><a data-toggle="tab" href="#panel3">Системы</a></li>
+
+                </ul>
+
+                <div class="tab-content">
+                    <div id="panel1" class="tab-pane fade in active">
+                        <div class="params-bl">
+                            <p class="description">
+                                <?=$data['products']['content']?>
+                            </p>
+                        </div>
+                    </div>
+                    <div id="panel2" class="tab-pane fade">
+                        <div class="colors-bl">
+                            <?=$data['products']['colors']?>
+                        </div>
+                    </div>
+                    <div id="panel3" class="tab-pane fade">
+                        <div class="type-bl">
+                            <?=$data['products']['type_id']?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Характеристики, Цвет, Тип системы -->
+
+
+        </div>
+    </div>
+</div>
+<!-- Order page end -->
+
+<!-- Reviews -->
+<div class="container-fluid section-8">
+    <div class="w970">
+        <br>
+        <h2 class="white text-center">Отзывы наших клиентов:</h2>
+        <br>
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <!-- Wrapper for slides -->
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <div class="otz-bl">
+                        <div class="pull-left">
+                            <p class="title otz-img otz-01">
+                                Владимир Козлов <br>
+                                <span class="date">21.04.2013</span>
+                            </p>
+                            <p class="txt">
+                                В салоне понятие качества сопровождается во всем: в изделиях,
+                                установке, гарантии и самое главное в общении с клиентом.
+                                Уже не раз обращался в салон и подсаживаю всех знакомых.
+                                Это сервис к которому необходимо стремится многим!
+                                <br><br>
+                                <span class="btn-link">https://www.facebook.com/vladimir.kozlov.313</span>
+                            </p>
+                        </div>
+                        <!-- -->
+                        <div class="pull-right">
+                            <p class="title otz-img otz-02">
+                                Светлана Онищук <br>
+                                <span class="date">12.05.2015</span>
+                            </p>
+                            <p class="txt">
+                                К Вам в Салон порекомендовали обратится друзья. Мы даже не искали кого-то другого,
+                                просто позвонили и договорились за замер. Оперативно приехали, выбрали, все красиво
+                                установили. В общем - хороший сервис за умеренные деньги! Спасибо!
+                                <br><br>
+                                <span class="btn-link">http://vk.com/id9845337</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="otz-bl">
+                        <div class="pull-left">
+                            <p class="title otz-img otz-03">
+                                Кирилл Кулаков <br>
+                                <span class="date">11.07.2014</span>
+                            </p>
+                            <p class="txt">
+                                Анюта, спасибо тебе за красоту!) Мне нравится с тобой работать - вертикалку в офис
+                                повесить - не проблема - 2 дня и готово! Тканевые ролетики домой - тоже не вопрос!)
+                                Так держать!)
+                                <br><br>
+                                <span class="btn-link">https://www.facebook.com/profkurs</span>
+                            </p>
+                        </div>
+                        <!-- -->
+                        <div class="pull-right">
+                            <p class="title otz-img otz-04">
+                                Алевтина <br>
+                                <span class="date">03.06.2015</span>
+                            </p>
+                            <p class="txt">
+                                Долго искали защиту от солнца и тепла в детскую. После консультации в Салоне
+                                остановили свой выбор на тканевых ролетах с особой тканью Термо Блокер.
+                                <br><br>
+                                Теперь у нашего ребенка в комнате комфортная температура и тень, кондиционер не нужен!
+                                С закрытыми ролетами даже в самый солнцепек в комнате прохладно.
+                                Очень хорошее
+                                решение проблемы!
+                                <br><br>
+                                <span class="btn-link">Отзыв прислали на почту</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <!-- -->
+                <div class="item">
+                    <div class="otz-bl">
+                        <div class="pull-left">
+                            <p class="title otz-img otz-05">
+                                Diana Ivashkovska <br>
+                                <span class="date">07.07.2015</span>
+                            </p>
+                            <p class="txt">
+                                Всем доброго времени суток! Не могла не удержаться, чтобы оставить коммент по
+                                поводу работы "Салона"... Заказывала жалюзи. Ребята большие молодцы! Помогли с
+                                выбором, сделали замеры, установили все в оговоренные сроки. Соотношение
+                                цена/качество - оптимальное. <br><br>
+                                Уровень обслуживания - прекрасный.
+                                К каждому заказу подходят индивидуально, клиент - на первом месте,
+                                чувствуется должное внимание. Отдельное спасибо монтажнику Виталию и
+                                менеджеру, который координировал его работу. Ребята большие умнички! Советую всем!
+                                <br><br>
+                                <span class="btn-link">https://www.facebook.com/diana.ivashkovska</span>
+                            </p>
+                        </div>
+                        <!-- -->
+                        <div class="pull-right">
+                            <p class="title otz-img otz-06">
+                                Дмитрий Першаков<br>
+                                <span class="date">15.08.2015</span>
+                            </p>
+                            <p class="txt">
+                                Спасибо менеджеру за помощь в идеях оформления! Изначально очень тяжело было
+                                определится с вариантом, но после 5 минут общения я понял - хочу только День-Ночь!
+                                Получилось очень стильно и оригинально!
+                                <br><br>
+                                <span class="btn-link">http://vk.com/dpershakov</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+                <!-- -->
+                <div class="item">
+                    <div class="otz-bl">
+                        <div class="pull-left">
+                            <p class="title otz-img otz-07">
+                                Геннадий Гоменюк <br>
+                                <span class="date">18.07.2015</span>
+                            </p>
+                            <p class="txt">
+                                Хотел сделать супруге подарок к окончанию ремонта - выбрать тканевые ролеты. Выбирали,
+                                наверное, всем коллективом Салона минут 20.
+                                Результат получился отличным - жене все понравилось. <br><br>
+                                Плюс, очень хорошо все вписалось
+                                в интерьер. Уже когда мастер приехал устанавливать тканевые ролеты, мы вспомнили,
+                                что хотели антимоскитные сетки. Сделали за 1 день, я просто приехал и забрал.
+                                Команда Салона - спасибо!
+                                <br><br>
+                                <span class="btn-link">https://www.facebook.com/gennady.gomenyuk.9</span>
+                            </p>
+                        </div>
+                        <!-- -->
+                        <!-- -->
+                        <div class="pull-right">
+                            <p class="title otz-img otz-08">
+                                Ириска Подуст <br>
+                                <span class="date">01.09.2015</span>
+                            </p>
+                            <p class="txt">
+                                Получила большое удовольствие от заказа тканевых ролет. Все, начиная от милой улыбки
+                                менеджера салона до конечного результата, приятно удивило. <br><br>
+                                Понравился большой выбор
+                                красивых тканей и видов тканевых ролет, менеджер салона помог определится с выбором
+                                среди всего разнообразия. Оформили заказ. Все сделали оперативно и качественно. Теперь
+                                любуюсь дома красотой и без проблем спасаюсь от палящего в окна солнца.
+                                <br><br>
+                                <span class="btn-link">http://vk.com/id27376094</span>
+                            </p>
+                        </div>
+                        <!-- -->
+                    </div>
+                    <div class="carousel-caption">
+                    </div>
+                </div>
+            </div>
+            <!-- Indicators -->
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="3"></li>
+            </ol>
+            <!-- Controls -->
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </a>
+        </div>
+        <a href="/pages/view/Контакты"><button class="btn btn-otz center-block">Посетить шоурум в Киеве <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></button></a>
+    </div>
+</div>
+<!-- Reviews end-->
+
+
+
+<!-- The Bootstrap Image Gallery lightbox, should be a child element of the document body -->
+<div id="blueimp-gallery" class="blueimp-gallery">
+    <!-- The container for the modal slides -->
+    <div class="slides"></div>
+    <!-- Controls for the borderless lightbox -->
+    <h3 class="title"></h3>
+    <a class="prev">‹</a>
+    <a class="next">›</a>
+    <a class="close">×</a>
+    <a class="play-pause"></a>
+    <ol class="indicator"></ol>
+    <!-- The modal dialog, which will be used to wrap the lightbox content -->
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title"></h4>
+                    <p>
+                        <?php
+                        // echo "<pre>";
+                        // print_r($data['products']['title']);
+                        // if( isset($data['products']['title']) ){
+                        //    echo $data['products']['title'];
+                        // }
+                        ?>
+                    </p>
+                </div>
+                <div class="modal-body next"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary pull-left prev bg-black white">
+                        <i class="glyphicon glyphicon-chevron-left"></i>
+                        Предыдущая
+                    </button>
+                    <button type="button" class="btn btn-primary next bg-black">
+                        Следующая
+                        <i class="glyphicon glyphicon-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

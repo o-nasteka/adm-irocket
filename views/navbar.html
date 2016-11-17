@@ -1,0 +1,172 @@
+<!-- Navbar Header Style .min -->
+<style type="text/css">.navbar-default,.top-phone-bl .list-group-item{border:none}.out-syst:hover,.top-cat-but:hover,.top-phone-bl .top-btn:hover,.top1-nav li a:active,.top1-nav li a:hover{text-decoration:underline}.t-menu .logo{background:url(/images/logo2.png) center no-repeat;width:200px;height:65px;margin:10px 0 0;float:left}.t-menu .tm{padding-top:5px;float:left}.t-menu .tm li{display:inline-block;list-style-type:none;margin-left:20px;margin-top:30px}.t-menu .tm li:first-child{margin-left:0}.t-menu .tm li a{color:#2c3341;font-size:14px;font-weight:400}.main-nav{top:0;left:0;width:100%;position:fixed;z-index:9999;background-color:#fff!important}.top1-nav{padding-top:20px}.top1-nav li a{font-size:14px!important;color:#2c3341!important}.top-phone-bl .top-btn{background-color:transparent!important;text-transform:uppercase!important;border:2px solid #23d5d4;border-radius:0!important;color:#23d5d4}.top-phone-bl{padding:5px 0 0;float:right!important;width:190px;border:0 solid #000;margin:0}.top-phone-bl .row{margin:0!important;padding:0!important}.top-phone{font-size:16px;padding:5px 0 5px 7px;border:0 solid #ccc!important;margin-left:15px;width:160px}.top2-nav{background-color:#2c3341}.dropdown-toggle:focus,.dropdown-toggle:hover{background-color:transparent!important;color:#fff;border-radius:0!important}.dropdown-toggle:active,.dropdown-toggle:focus{background-color:#23d5d4!important;color:#fff;border-radius:0!important}.open>.dropdown-menu{margin:0!important;border-radius:0!important}ul.nav li.dropdown:hover ul.dropdown-menu{display:block;margin:0;background-color:#fff;color:#2c3341;padding-left:10px;padding-right:10px;border-radius:0}.dropdown-toggle:after,a.menu:after{content:none}.nav-pills>li>a{background-color:transparent;color:#fff;border-radius:0!important}.dropdown-menu>li>a{font-size:12px}.dropdown-menu span{font-size:13px}.dropdown-menu li a .blue{margin-left:-20px;padding-left:10px}.dropdown-menu li a .blue:hover{background-color:transparent!important;text-decoration:underline}.drop-big{width:255px!important}.drop-big2{padding:5px 30px}.drop-big3{width:260px!important}.drop-big4{width:288px!important}.out-syst{background-color:#23d5d4;color:#fff;font-size:14px;padding:0 10px;border:none;float:right!important}.nav-pills>li>a:hover,.out-syst:hover{background-color:#23d5d4!important}.sub-type{width:287px;position:absolute;z-index:8899}.sub-type li{border:1px solid #fafafa;width:280px!important;margin:0 auto}.top-cat-but,.top-cat-but:hover{background-color:transparent!important}.top-cat-but{position:absolute!important;z-index:8888;margin:0;padding:0 15px;height:40px;border:0 solid #fff;color:transparent!important}.top-cat-but:hover{color:#fff!important}.dropdown-toggle:active,.dropdown-toggle:focus,.top-cat-but:active,.top-cat-but:focus{border:none!important}</style>
+<!-- Navbar Header Style .min -->
+
+<!--  Navbar  -->
+<nav class="navbar navbar-default main-nav">
+    <div class="container-fluid">
+        <div class="w970">
+            <div class="t-menu">
+                <a href="/"><div class="logo"></div></a>
+                <ul class="tm">
+                    <li><a href="/news">Акции и новости</a></li>
+                    <li><a href="/gallery">Наши работы</a></li>
+                    <li><a href="/pages/view/О-компании">О компании</a></li>
+                    <li><a href="/pages/view/Контакты">Контакты</a></li>
+                </ul>
+                <div class="row top-phone-bl">
+                    <div class="col-xs-2">
+                        <ul class="row list-group">
+                            <li class="list-group-item top-phone">+38 (097) 433-00-87</li>
+                            <li class="list-group-item"><a href="#modal" onclick="getElementById('idItem').value='ЗАКАЗАТЬ ЗВОНОК!';" class="call-modal"><button type="submit" class="btn top-btn">Заказать звонок!</button></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid top2-nav">
+        <div class="w970">
+            <ul class="nav nav-pills">
+                <li role="presentation" class="dropdown">
+                    <a class="top-cat-but" href="/products/view_sub/1">
+                        Жалюзи <span class="caret"></span>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="/products/view_sub/1" role="button" aria-haspopup="true" aria-expanded="false">
+                            Жалюзи <span class="caret"></span>
+                        </a>
+                    </a>
+                    <!-- -->
+                    <ul class="dropdown-menu drop-big ">
+                        <li><a href="/products/view_sub/2"><span class="blue">Горизонтальные</span></a></li>
+                        <?php
+                        foreach($menu as $item){
+                        if( $item['parent_id'] == 2) {
+                        ?><li><a href="/products/view/<?=$item['alias']?>"><?="- ".$item['title']?></a> <?php
+                            }
+                            }?>
+
+                        <li><a href="/products/view_sub/6"><span class="blue">Вертикальные</span></a></li>
+                        <?php
+                        foreach($menu as $item){
+                        if( $item['parent_id'] == 6) {
+                        ?><li><a href="/products/view/<?=$item['alias']?>"><?="- ".$item['title']?></a> <?php
+                            }
+                            }?>
+
+                        <li><a href="/products/view_sub/10"><span class="blue">Деревянные и бамбуковые</span></a></li>
+                        <?php
+                        foreach($menu as $item){
+                        if( $item['parent_id'] == 10) {
+                        ?><li><a href="/products/view/<?=$item['alias']?>"><?="- ".$item['title']?></a> <?php
+                            }
+                            }?>
+                    </ul>
+                    <!-- -->
+                </li>
+                <li role="presentation" class="dropdown ">
+                    <a class="top-cat-but" href="/products/view_sub/13">
+                        Ролеты <span class="caret"></span>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="/products/view_sub/2" role="button" aria-haspopup="true" aria-expanded="false">
+                            Ролеты <span class="caret"></span>
+                        </a>
+                    </a>
+                    <!-- -->
+                    <ul class="dropdown-menu drop-big2">
+                        <li><a href="/products/view_sub/14"><span class="blue">Системы открытого типа</span></a></li>
+                        <?php
+                        foreach($menu as $item){
+                        if( $item['parent_id'] == 14) {
+                        ?><li><a href="/products/view/<?=$item['alias']?>"><?="- ".$item['title']?></a> <?php
+                            }
+                            }?>
+                        <li><a href="/products/view_sub/21"><span class="blue">Системы закрытого типа</span></a></li>
+                        <?php
+                        foreach($menu as $item){
+                        if( $item['parent_id'] == 21) {
+                        ?><li><a href="/products/view/<?=$item['alias']?>"><?="- ".$item['title']?></a> <?php
+                            }
+                            }?>
+                        <li><a href="/products/view_sub/26"><span class="blue">Системы день-ночь</span></a></li>
+                        <?php
+                        foreach($menu as $item){
+                        if( $item['parent_id'] == 26) {
+                        ?><li><a href="/products/view/<?=$item['alias']?>"><?="- ".$item['title']?></a> <?php
+                            }
+                            }?>
+                            <!-- -->
+                        <?php
+                        foreach($menu as $item){
+                        if( $item['parent_id'] == 31) {
+                        ?><li><a href="/products/view/<?=$item['alias']?>"><?="<span class='blue'>".$item['title']?></span></a><?php
+                            }
+                            }?>
+                            <!-- -->
+                        <?php
+                        foreach($menu as $item){
+                        if( $item['parent_id'] == 32) {
+                        ?><li><a href="/products/view/<?=$item['alias']?>"><?="<span class='blue'>".$item['title']?></span></a><?php
+                            }
+                            }?>
+                            <!-- -->
+                    </ul>
+                    <!-- -->
+                </li>
+                <li role="presentation" class="dropdown">
+                    <a class="top-cat-but" href="/products/view_sub/33">
+                        Плиссе <span class="caret"></span>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="/products/view_sub/3" role="button" aria-haspopup="true" aria-expanded="false">
+                            Плиссе <span class="caret"></span>
+                        </a>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <?php
+                        foreach($menu as $item){
+                        if( $item['parent_id'] == 33) {
+                        ?><li><a href="/products/view/<?=$item['alias']?>"><?="- ".$item['title']?></a> <?php
+                            }
+                            }?>
+                            <!--  -->
+                    </ul>
+                </li>
+                <li role="presentation" class="dropdown">
+                    <a class="top-cat-but" href="/products/view_sub/38">
+                        Антимоскитные сетки <span class="caret"></span>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="/products/view_sub/4" role="button" aria-haspopup="true" aria-expanded="false">
+                            Антимоскитные сетки <span class="caret"></span>
+                        </a>
+                    </a>
+                    <ul class="dropdown-menu drop-big3">
+                        <?php
+                        foreach($menu as $item){
+                        if( $item['parent_id'] == 38) {
+                        ?><li><a href="/products/view/<?=$item['alias']?>"><?="- ".$item['title']?></a> <?php
+                            }
+                            }?>
+                            <!--  -->
+                    </ul>
+                </li>
+                <!-- Outsytem -->
+                <li role="presentation" class="dropdown out-syst">
+                    <a class="top-cat-but" href="/products/view_sub/42">
+                        Внешние системы солнцезащиты <span class="caret"></span>
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                            Внешние системы солнцезащиты <span class="caret"></span>
+                        </a>
+                    </a>
+                    <ul class="dropdown-menu drop-big4">
+                        <li><a href="/products/view_sub/49">- Маркизы</a></li>
+                        <?php
+                        foreach($menu as $item){
+                        if( $item['parent_id'] == 50 OR $item['parent_id'] == 51 OR $item['parent_id'] == 52
+                        OR $item['parent_id'] == 53 OR $item['parent_id'] == 54){
+                        ?><li><a href="/products/view/<?=$item['alias']?>"><?="- ".$item['title']?></a><?php
+                            }
+                            }?>
+                            <!--  -->
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!-- Navbar end  -->

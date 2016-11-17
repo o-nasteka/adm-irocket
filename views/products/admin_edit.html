@@ -1,0 +1,197 @@
+<br>
+<br>
+<br>
+
+<h3>Редактировать товар: <?=htmlspecialchars(@$data['products']['title'])?></h3><br/>
+<form method="post" action="" enctype="multipart/form-data" >
+    <ul class="nav nav-pills">
+        <li class="active"><a data-toggle="tab" href="#data1">Общие </a></li>
+        <li><a data-toggle="tab" href="#data2">Фото товара </a></li>
+        <li><a data-toggle="tab" href="#data2_1">Фото для категории</a></li>
+        <li><a data-toggle="tab" href="#data3">Цвет/Системы </a></li>
+        <li><a data-toggle="tab" href="#data4">SEO </a></li>
+    </ul>
+    <br><br>
+    <div class="tab-content">
+        <!-- Общие -->
+        <div class="tab-pane fade in active" id="data1"><!-- data1 -->
+            <div class="form-group">
+                <label for="alias">Alias</label>
+                <input type="text" id="alias" name="alias" value="<?=htmlspecialchars(@$data['products']['alias'])?>" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="title">Заголовок</label>
+                <input type="text" id="title" name="title" value="<?=htmlspecialchars(@$data['products']['title'])?>" class="form-control"  />
+            </div>
+            <div class="form-group">
+                <label for="price">Цена в USD от</label>
+                <input maxlength="30" type="text" id="price" name="price" value="<?=htmlspecialchars(@$data['products']['price'])?>" class="form-control"  />
+            </div>
+            <div class="form-group">
+                <label for="unit">Единицы измерения</label>
+                <input maxlength="30" type="text" id="unit" name="unit" value="<?=htmlspecialchars(@$data['products']['unit'])?>" class="form-control"  />
+            </div>
+            <div class="form-group">
+                <label for="parent_id">Категория товара</label>
+                <select class="form-control" name="parent_id" id="parent_id" required="">
+                    <option selected value="<?=htmlspecialchars(@$data['products']['parent_id'])?>">
+                        <?php
+                        if( @$data['products']['parent_id'] == 2){
+                            echo "Горизонтальные жалюзи";
+                        }
+                        elseif ( @$data['products']['parent_id'] == 6 ){
+                        echo "Вертикальные жалюз";
+                        }
+                        elseif ( @$data['products']['parent_id'] == 10 ){
+                        echo "Деревянные и бамбуковые";
+                        }
+                        elseif ( @$data['products']['parent_id'] == 14 ){
+                        echo "Системы открытого типа";
+                        }
+                        elseif ( @$data['products']['parent_id'] == 21 ){
+                        echo "Системы закрытого типа";
+                        }
+                        elseif ( @$data['products']['parent_id'] == 26 ){
+                        echo "Системы день-ночь";
+                        }
+                        elseif ( @$data['products']['parent_id'] == 31 ){
+                        echo "Римский карниз";
+                        }
+                        elseif ( @$data['products']['parent_id'] == 32 ){
+                        echo "Бамбуковые-ролеты";
+                        }
+                        elseif ( @$data['products']['parent_id'] == 33 ){
+                        echo "Плиссе";
+                        }
+                        elseif ( @$data['products']['parent_id'] == 38 ){
+                        echo "Антимоскитные сетки";
+                        }
+                        elseif ( @$data['products']['parent_id'] == 42 ){
+                        echo "Внешние системы солнцезащиты";
+                        }
+                        elseif ( @$data['products']['parent_id'] == 49 ){
+                        echo "Маркизы";
+                        }
+                        ?>
+                    </option>
+                    <option value="2">Горизонтальные жалюзи</option>
+                    <option value="6">Вертикальные жалюзи</option>
+                    <option value="10">Деревянные и бамбуковые</option>
+                    <option value="14">Системы открытого типа</option>
+                    <option value="21">Системы закрытого типа</option>
+                    <option value="26">Системы день-ночь</option>
+                    <option value="31">Римский карниз</option>
+                    <option value="32">Бамбуковые-ролеты</option>
+                    <option value="33">Плиссе</option>
+                    <option value="38">Антимоскитные сетки</option>
+                    <option value="42">Внешние системы солнцезащиты</option>
+                    <option value="49">Маркизы</option>
+
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="content_short">Краткое описание:</label>
+                <textarea style="min-height: 150px;" id="content_short" name="content_short" class="form-control" ><?=htmlspecialchars($data['products']['content_short'])?></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="content">Основное описание:</label>
+                <textarea style="min-height: 300px;" id="content" name="content" class="form-control" ><?=htmlspecialchars($data['products']['content'])?></textarea>
+            </div>
+        </div>
+        <!-- -->
+
+        <!-- Фото товара -->
+        <div class="tab-pane fade" id="data2">
+            <table class="table table-bordered table-striped" style="width: 80%; border: 1px solid #ccc;">
+                <tr>
+                    <td>ID</td>
+
+                    <td>Изображение</td>
+                    <td style="padding-left: 15px;">Управление</td>
+
+
+                </tr>
+                <?php foreach($data['products']['img_prod'] as $img_prod) { ?>
+
+                <tr>
+                    <td><strong><?=$img_prod['id']?></strong></td>
+
+                    <td><strong> <img src="<?=$img_prod['img']?>"  width="300" height="350"  class="img-responsive" alt="Responsive image"></strong></td>
+                    <!--<td><strong><?=$gallery['title']?></strong></td>-->
+                    <td width="250" align="center">
+                        <a href="/admin/products/edit/img_prod_list/<?=$img_prod['id']?>/<?=$data['products']['id']?>">Редактировать</a>
+                       <!-- <a href="/admin/products/edit/delete/<?=$img_prod['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning" style="padding: 5px 20px;">Удалить</button></a> -->
+                        <a href="/admin/products/edit/delete/<?=$img_prod['id']?>" onclick="return confirmDelete();">Удалить</a>
+                    </td>
+
+                </tr>
+                <?php } ?>
+            </table>
+
+            <br/>
+
+            <div>
+                <p><strong>Добавить изображение</strong></p>
+                    <input  type="file" name="files" ><br>
+                    <!-- <input  type="file" name="files[]" min="1" max="9999" multiple='true'> -->
+            </div>
+
+        </div>
+        <!-- Фото товара end-->
+
+        <!-- Фото для категории -->
+        <div class="tab-pane fade" id="data2_1">
+            <div class="form-group">
+                <label for="img_child">Фото для категории:</label>
+                <textarea style="min-height: 300px;" id="img_child" name="img_child" class="form-control" ><?=$data['products']['img_child']?></textarea>
+            </div>
+        </div>
+        <!-- Фото товара end-->
+
+        <!-- Цвет/Системы -->
+        <div class="tab-pane fade" id="data3">
+            <div class="form-group">
+                <label for="colors">Цвет:</label>
+                <textarea style="min-height: 300px;" id="colors" name="colors" class="form-control" ><?=$data['products']['colors']?></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="type_id">Системы:</label>
+                <textarea style="min-height: 300px;" id="type_id" name="type_id" class="form-control" ><?=$data['products']['type_id']?></textarea>
+            </div>
+        </div>
+
+        <!-- SEO -->
+        <div class="tab-pane fade" id="data4">
+            <div class="form-group">
+                <label for="meta_key">Мета-тег Keywords:</label>
+                <input type="text" id="meta_key" name="meta_key" value="<?=htmlspecialchars(@$data['products']['meta_key'])?>" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="meta_desc">Мета-тег Description:</label>
+                <input type="text" id="meta_desc" name="meta_desc" value="<?=htmlspecialchars(@$data['products']['meta_desc'])?>" class="form-control" />
+            </div>
+
+        </div>
+
+    </div>
+
+    <input type="hidden" name="id" value="<?=$data['products']['id']?>" />
+    <input type="submit" class="btn btn-success" value="Сохранить">
+    <a href="/admin/products/"><input type="button" class="btn btn-primary" value="Отмена"></a>
+    <br>
+    <br>
+
+    <script>
+        CKEDITOR.replace( 'content_short' );
+        CKEDITOR.replace( 'content' );
+        CKEDITOR.replace( 'img_child' );
+        CKEDITOR.replace( 'colors' );
+        CKEDITOR.replace( 'type_id' );
+
+    </script>
+
+</form>
+
+

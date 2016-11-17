@@ -1,0 +1,60 @@
+<!-- Header 2 Style -->
+<style type="text/css">.header-in{width:100%;height:300px;padding-bottom:20px;background:url(/images/news-bl-bg.jpg) center no-repeat #384550;background-size:cover}.header-in h2{width:75%;padding:5px 40px;background:rgba(255,255,255,.5);color:#2c3341;text-align:center;margin:45px auto 0;font-size:36px}.header-in .calc-in{width:100%;height:auto;min-height:160px;background:rgba(56,69,80,.6);margin-top:46px;padding:23px 0 20px}.header-in .calc-in hr{width:145px;margin-top:0}.header-in input{width:180px!important;height:40px;border:none!important;border-radius:0!important;margin:0;text-align:right}.header-in label{color:#fff;font-weight:300;font-size:16px;margin:10px 10px 0 0}.header-in .lb2{margin-left:10px}.header-in .btn{width:287px;height:40px;background-color:#23d5d4;color:#fff;font-size:20px;font-weight:500;text-transform:uppercase;border-radius:0!important;border:none!important;margin-left:35px}.header-in .btn:hover{text-decoration:underline;background-color:#23d5d4}.header-in .btn-group .btn{font-size:18px;margin-left:85px}.header-in .btn-group .btn:hover{text-decoration:underline;background-color:#23d5d4!important}.header-in .dropdown-menu>li{width:198px}</style>
+<!-- Header 2 Style end-->
+
+<!-- Blank section -->
+<div class="container-fluid blank-section">
+
+</div>
+<!-- Blank section end-->
+
+<!-- header-in -->
+<div class="container-fluid header-in news-header" >
+    <div class="w970">
+        <h2><?=$data['page']['title']?></h2>
+    </div>
+
+    <div class="calc-in">
+        <div class="w970">
+            <form class="">
+                <h4 class="white text-left pull-left">Укажите размер:</h4>
+                <!-- <h4 class="white text-left pull-right">Выберите тип:</h4> -->
+                <br><br>
+                <hr class="pull-left">
+                <div class="clr"></div>
+                <div class="form-group pull-left">
+                    <label class="pull-left" for="InputWidth">Ширина:</label>
+                    <input type="text" class="form-control pull-left" id="InputWidth" placeholder="мм" >
+                </div>
+                <div class="form-group pull-left">
+                    <label for="InputHeight" class="pull-left lb2">Высота:</label>
+                    <input type="text" class="form-control pull-left" id="InputHeight" placeholder="мм" >
+                </div>
+                <!-- <button type="submit" class="btn btn-default">Просчитать!</button> -->
+                <!-- Single button -->
+                <div class="btn-group pull-right">
+                    <button type="button" class="btn btn-default dropdown-toggle " data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Выберите тип <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu sub-type">
+                        <li><a href="/products/view_sub/1">- Жалюзи</a></li>
+                        <li><a href="/products/view_sub/13">- Ролеты</a></li>
+                        <li><a href="/products/view_sub/33">- Плиссе</a></li>
+                        <li><a href="/products/view_sub/38">- Антимоскитные сетки</a></li>
+                        <li><a href="/products/view_sub/42">- Внешние системы солнцезащиты</a></li>
+                    </ul>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- header-in end -->
+
+
+
+<?php  echo $data['page']['content'];?>
+
+
+
+
+

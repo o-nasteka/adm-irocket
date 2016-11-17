@@ -1,0 +1,32 @@
+<br>
+<br>
+<br>
+<h3>Курс валют</h3>
+<br/>
+
+
+<table class="table table-bordered table-striped table-hover" style="width: 80%; border: 1px solid #ccc;">
+    <tr>
+        <td>ID</td>
+        <td>Валюта</td>
+        <td>Курс</td>
+        <td style="padding-left: 15px;">Управление</td>
+    </tr>
+    <?php foreach($data['currency'] as $currency_data) { ?>
+    <tr>
+        <td><strong><?=$currency_data['id']?></strong></td>
+        <td><strong><?=$currency_data['title']?></strong></td>
+        <td><strong><?=$currency_data['rate']?></strong></td>
+        <td width="250" align="center">
+            <a href="/admin/currency/edit/<?=$currency_data['id']?>"><button class="btn btn-sm btn-primary" style="padding: 5px 20px;">Редактировать</button></a>
+            <a href="/admin/currency/delete/<?=$currency_data['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning" style="padding: 5px 20px;">Удалить</button></a>
+        </td>
+    </tr>
+    <?php } ?>
+</table>
+
+<div>
+    <a href="/admin/currency/add/"><button class="btn btn-sm btn-success">Добавить валюту</button></a>
+</div>
+
+<br>

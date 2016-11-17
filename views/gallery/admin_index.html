@@ -1,0 +1,65 @@
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<table class="table table-bordered table-striped" style="width: 80%; border: 1px solid #ccc;">
+    <tr>
+        <td>ID</td>
+        <td>Название</td>
+        <td>Изображение</td>
+        <td style="padding-left: 15px;">Управление</td>
+
+
+    </tr>
+    <?php foreach($data['gallery'] as $gallery) { ?>
+
+    <tr>
+        <td><strong><?=$gallery['id']?></strong></td>
+        <td><strong><?=$gallery['title']?></strong> </td>
+        <td><strong> <img src="<?=$gallery['img']?>"  width="300" height="350"  class="img-responsive" alt="Responsive image"></strong></td>
+        <!--<td><strong><?=$gallery['title']?></strong></td>-->
+        <td width="250" align="center">
+            <a href="/admin/gallery/edit/<?=$gallery['id']?>"><button class="btn btn-sm btn-primary" style="padding: 5px 20px;">Редактировать</button></a>
+            <a href="/admin/gallery/index/delete/<?=$gallery['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning" style="padding: 5px 20px;">Удалить</button></a>
+        </td>
+
+    </tr>
+    <?php } ?>
+</table>
+
+<br/>
+
+<div>
+    <a href="/admin/gallery/add/"><button class="btn btn-sm btn-success">Добавить новое изображение</button></a>
+</div>
+
+
+<?php if($data['count'] > $data['limit']) { ?>
+<nav>
+
+
+    <ul class="pagination">
+        <?php $prev = $data['start'] - $data['limit'];
+                            if($prev >= 0){ ?>
+        <li>
+            <a href="/admin/gallery/index/start/<?php echo ($data['start'] - $data['limit']); ?>" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <?php } ?>
+        <?php echo @$data[html]; ?>
+
+        <?php $next = ($data['count'] - $data['start']) - $data['limit'];
+                         if($next > 0 ){ ?>
+        <li>
+            <a href="/admin/gallery/index/start/<?php echo ($data['start'] + $data['limit']); ?>" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+        <?php } ?>
+    </ul>
+</nav>
+<?php } ?>

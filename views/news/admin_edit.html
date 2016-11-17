@@ -1,0 +1,70 @@
+<br>
+<br>
+
+
+<h3>Редактировать новость</h3><br/>
+
+    <div class="form-group">
+        <label for="title">Изображение контента </label>
+        <img src="<?=$data['news']['img_min']?>"  width="450" height="450" class="img-responsive" alt="Responsive image">
+    </div><br>
+    <p><strong>Выберите файл для обновления изображения</strong></p>
+    <form action="" method="post" enctype="multipart/form-data" >
+        <input type="hidden" name="id" value="<?=$data['news']['id']?>" >
+        <input type="file" name="files"  ><br>
+        <input type="submit" name="img_min_upld" value="Обновить изображение" class="btn btn-success" >
+    </form>
+
+
+<!--
+<div class="form-group">
+    <label for="title">Картинка основного контента </label>
+    <img src="<?=$data['news']['img_content']?>" class="img-responsive" alt="Responsive image">
+</div>
+
+<form action="" method="post" enctype="multipart/form-data" >
+    <input type="hidden" name="id" value="<?=$data['news']['id']?>" >
+    <input type="file" name="files"  >
+    <input type="submit" name="img_content_upld" value="Загрузить картинку" class="btn btn-success" >
+</form>
+-->
+<br>
+<br>
+<br>
+<form method="post" action="">
+    <div class="form-group">
+        <label for="title">Название</label>
+        <input type="text" id="title" name="title" value="<?=htmlspecialchars(@$data['news']['title'])?>" class="form-control"  />
+    </div>
+    <div class="form-group">
+        <label for="content_min">Описание:</label>
+        <textarea style="min-height: 150px;" id="content_min" name="content_min" class="form-control" ><?=htmlspecialchars(@$data['news']['content_min'])?></textarea>
+    </div>
+    <div class="form-group">
+        <label for="date_down">Дата начала акции:</label>
+        <input type="text" id="date_down" name="date_down"  class="form-control" value="<?=htmlspecialchars(@$data['news']['date_down'])?>" />
+    </div>
+    <div class="form-group">
+        <label for="date_up">Дата завершения акции:</label>
+        <input type="text" id="date_up" name="date_up"  class="form-control" value="<?=htmlspecialchars(@$data['news']['date_up'])?>" />
+    </div>
+
+    <!--
+    <div class="form-group">
+        <label for="content">Основное описание:</label>
+        <textarea style="min-height: 300px;" id="content" name="content" class="form-control" ><?=htmlspecialchars(@$data['news']['content'])?></textarea>
+    </div>
+-->
+
+
+
+    <input type="submit" name="submit" value="Сохранить" class="btn btn-success" />
+
+</form>
+
+
+<script>
+    CKEDITOR.replace( 'content_min' );
+    // CKEDITOR.replace( 'gallery_img' );
+    // config.height = '500px';
+</script>

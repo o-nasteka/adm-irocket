@@ -1,0 +1,74 @@
+<br>
+<br>
+<br>
+
+<h3>Orders edit</h3><br/>
+<form method="post" action="">
+    <input type="hidden" name="id" value="<?=$data['order']['id']?>" />
+
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" value="<?=htmlspecialchars(@$data['order']['name'])?>" maxlength="25" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="city">Город</label>
+        <input type="text" id="city" name="city" value="<?=htmlspecialchars(@$data['order']['city'])?>" maxlength="25" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label for="phone">Phone</label>
+        <input type="text" id="phone" name="phone" value="<?=htmlspecialchars(@$data['order']['phone'])?>" maxlength="15" class="form-control"  />
+    </div>
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" id="email" name="email" value="<?=htmlspecialchars(@$data['order']['email'])?>" class="form-control"  />
+    </div>
+    <div class="form-group">
+        <label for="package">Пакет</label>
+        <input type="text" id="package" name="package" value="<?=htmlspecialchars(@$data['order']['package'])?>" class="form-control"  />
+    </div>
+    <div class="form-group">
+        <label for="from_form">с какой формы отправили</label>
+        <input type="text" id="from_form" name="from_form" value="<?=htmlspecialchars(@$data['order']['from_form'])?>" class="form-control"  />
+    </div>
+
+    <div class="form-group">
+        <label for="comment1">Комментарии 1</label>
+        <textarea class="form-control" rows="5" id="comment1" name="comment1"><?=htmlspecialchars(@$data['order']['comment1'])?></textarea>
+    </div>
+    <div class="form-group">
+        <label for="comment2">Комментарии 2</label>
+        <textarea class="form-control" rows="5" id="comment2" name="comment2"><?=htmlspecialchars(@$data['order']['comment2'])?></textarea>
+    </div>
+
+
+
+
+
+
+
+    <div class="form-group">
+        <label for="status">Status</label>
+        <select id="status" name="status" class="form-control">
+            <option value="<?=htmlspecialchars(@$data['order']['status'])?>"></option>
+            <option value="0">Новый</option>
+            <option value="1">Успешная оплата</option>
+            <option value="2">Отправлен счет</option>
+            <option value="3">Отмена</option>
+            <option value="4">Прозвон</option>
+
+        </select>
+    </div>
+
+    <input type="submit" class="btn btn-success" value="Save">
+
+    <a href="/admin/order/"><input type="button" class="btn btn-warning" value="Cancel"></a>
+
+    <script>
+        // CKEDITOR.replace( 'content_short' );
+        // CKEDITOR.replace( 'gallery_img' );
+        // config.height = '500px';
+    </script>
+
+</form>
+
+
