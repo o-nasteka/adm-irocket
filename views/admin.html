@@ -17,13 +17,14 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/" target="_blank"><?=Config::get('site_name')?> - <?=__('lng.admin', 'Admin Section')?></a>
+
+<!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
+    <!--<div class="container">-->
+        <!--<div class="navbar-header">-->
+            <!--<a class="navbar-brand" href="/" target="_blank"><?=Config::get('site_name')?> - <?=__('lng.admin', 'Admin Section')?></a>-->
             <!--<div class="navbar-brand">User: <?php print_r($_SESSION['login']); ?></div>-->
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
+        <!--</div>-->
+        <!--<div id="navbar" class="collapse navbar-collapse">-->
             <?php if ( Session::get('login') ) { ?>
             <ul class="nav navbar-nav">
                 <li <?php if( App::getRouter()->getController() == 'order' ) {?>class="active"<?php } ?>><a href="/admin/order/">Orders</a></li>
@@ -31,13 +32,13 @@
                 <li><a href="/admin/users/logout">Exit</a></li>
             </ul>
             <?php } ?>
-        </div>
-    </div>
-</nav>
+        <!--</div>-->
+    <!--</div>-->
+<!--</nav>-->
 
-<div class="row">
+<!--<div class="row">-->
 
-    <div class="starter-template">
+    <!--<div class="starter-template">-->
 
         <?php if( Session::hasFlash() ){ ?>
             <div class="alert alert-info" role="alert">
@@ -46,16 +47,11 @@
         <?php } ?>
 
         <?=$data['content']?>
-    </div>
+    <!--</div>-->
 
-</div>
+<!--</div>-->
 
 
-<footer class="adm_foo">
-    <div class="w960">
-        <h5 class="ccopy text-center"><a href="/">Ukraine Level Up © <?=$today = date("Y")?> г.</a></h5>
-    </div>
-</footer>
 
 </body>
 </html>
