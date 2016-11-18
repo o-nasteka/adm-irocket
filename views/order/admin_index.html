@@ -6,84 +6,96 @@
 
 <h3>Заявки с сайта</h3><br/>
 
+<table id="order-table" class="table table-striped table-bordered" cellspacing="0" width="100%">
+    <thead>
+    <tr>
+        <th>№</th>
+        <th>Дата</th>
+        <th>Город</th>
+        <th>Имя</th>
+        <th>Телефон</th>
+        <th>Email</th>
+        <th>Пакет</th>
+        <th>Форма</th>
+        <th>Комментарий</th>
+        <th>Заметки</th>
+        <th>UTM</th>
+        <th>Статус</th>
+        <th>Управление</th>
+    </tr>
+    </thead>
+    <tfoot>
+    <tr>
+        <th>№</th>
+        <th>Дата</th>
+        <th>Город</th>
+        <th>Имя</th>
+        <th>Телефон</th>
+        <th>Email</th>
+        <th>Пакет</th>
+        <th>Форма</th>
+        <th>Комментарий</th>
+        <th>Заметки</th>
+        <th>UTM</th>
+        <th>Статус</th>
+        <th>Управление</th>
+    </tr>
+    </tfoot>
+    <tbody>
+    <?php foreach($data['item'] as $item) { ?>
+    <tr>
+        <td><?=$item['id']?></td>
+        <td><?=$item['date']?></td>
+        <td><?=$item['city']?></td>
+        <td><?=$item['name']?></td>
+        <td><?=$item['phone']?></td>
+        <td><?=$item['email']?></td>
+        <td><?=$item['package']?></td>
+        <td><?=$item['from_form']?></td>
+        <td><?=$item['comment1']?></td>
+        <td><?=$item['comment2']?></td>
+        <td><?=$item['utm']?></td>
 
-
-        <div class="ovrer">
-            <table id="orders-table" class="table table-bordered table-striped table-hover">
-                <tr>
-                    <td> <strong>№</strong> </td>
-                    <td> <strong>Дата</strong> </td>
-                    <td> <strong>Город</strong> </td>
-                    <td> <strong>Имя</strong> </td>
-                    <td> <strong>Телефон</strong> </td>
-                    <td> <strong>Email</strong> </td>
-                    <td> <strong>Пакет</strong> </td>
-                    <td> <strong>Форма</strong> </td>
-                    <td> <strong>Комментарии</strong> </td>
-                    <td> <strong>Заметки</strong> </td>
-                    <td> <strong>UTM</strong> </td>
-                    <!--<td style="width: 10%;"> <strong>From</strong> </td>-->
-                    <td style="width: 10%;"> <strong>Статус</strong> </td>
-                    <td style="width: 15%;"> <strong>Управление</strong> </td>
-                </tr>
-                <?php foreach($data['item'] as $item) { ?>
-                <tr>
-                    <td><?=$item['id']?></td>
-                    <td><?=$item['date']?></td>
-                    <td><?=$item['city']?></td>
-                    <td><?=$item['name']?></td>
-                    <td><?=$item['phone']?></td>
-                    <td><?=$item['email']?></td>
-                    <td><?=$item['package']?></td>
-                    <td><?=$item['from_form']?></td>
-                    <td><?=$item['comment1']?></td>
-                    <td><?=$item['comment2']?></td>
-                    <td><?=$item['utm']?></td>
-                    <!--<td><?=$item['title']?></td>-->
-
-                    <!-- Статус заказ  // Order status -->
-                    <?php
+        <!-- Статус заказ  // Order status -->
+        <?php
 
         if($item['status'] == 0){?>
-                    <td><?php echo "Новый";?></td>
-                    <?php }
+        <td><?php echo "Новый";?></td>
+        <?php }
 
         elseif($item['status'] == 1){?>
-                    <td class="bg_oplt_suc"><?php echo "Успешная оплата";?></td>
-                    <?php }
+        <td class="bg_oplt_suc"><?php echo "Успешная оплата";?></td>
+        <?php }
 
         elseif($item['status'] == 2){?>
-                    <td class="bg_send"><?php echo "Отправлен счет";?></td>
-                    <?php }
+        <td class="bg_send"><?php echo "Отправлен счет";?></td>
+        <?php }
 
         elseif($item['status'] == 3){?>
-                    <td class="bg_cenc"><?php echo "Отмена";?></td>
-                    <?php }
+        <td class="bg_cenc"><?php echo "Отмена";?></td>
+        <?php }
 
         elseif($item['status'] == 4){?>
-                    <td class="bg_phone"><?php echo "Прозвон";?></td>
-                    <?php }
+        <td class="bg_phone"><?php echo "Прозвон";?></td>
+        <?php }
 
         ?>
-                    <!-- Статус заказ  // Order status end -->
+        <!-- Статус заказ  // Order status end -->
 
-                    <td width="250" align="center">
-                        <a href="/admin/order/edit/<?=$item['id']?>"><button class="btn btn-sm btn-primary" style="padding: 5px 20px;">Редактировать</button></a>
-                        <!--<a href="/admin/order/delete/<?=$item['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning" style="padding: 5px 20px;">Delete</button></a>-->
-                    </td>
-                </tr>
-                <?php } ?>
-            </table>
-        </div>
-
-
-
+        <td width="250" align="center">
+            <a href="/admin/order/edit/<?=$item['id']?>"><button class="btn btn-sm btn-primary" style="padding: 5px 20px;">Редактировать</button></a>
+            <a href="/admin/order/delete/<?=$item['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning" style="padding: 5px 20px;">Удалить</button></a>
+        </td>
+    </tr>
+    <?php } ?>
+    </tbody>
+</table>
 
 
 <script>
 
     $(document).ready(function() {
-        $('#orders-table').DataTable();
+        $('#order-table').DataTable();
     } );
 
 </script>
@@ -117,3 +129,5 @@
 </nav>
 <?php } ?>
 <!-- pagination end -->
+
+<br/><br/>
