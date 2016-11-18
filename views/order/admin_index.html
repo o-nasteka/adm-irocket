@@ -4,28 +4,23 @@
 
 
 
-<h3>Orders from site</h3><br/>
-
-<!--<div class="container">-->
-    <!--<div class="row">-->
-        <!--<div class="col-lg-12">-->
-
+<h3>Заявки с сайта</h3><br/>
 
 
 
         <div class="ovrer">
-            <table class="table table-bordered table-striped table-hover">
+            <table id="orders-table" class="table table-bordered table-striped table-hover">
                 <tr>
-                    <td> <strong>#</strong> </td>
-                    <td> <strong>Дата/время</strong> </td>
+                    <td> <strong>№</strong> </td>
+                    <td> <strong>Дата</strong> </td>
                     <td> <strong>Город</strong> </td>
                     <td> <strong>Имя</strong> </td>
                     <td> <strong>Телефон</strong> </td>
-                    <td> <strong>email</strong> </td>
+                    <td> <strong>Email</strong> </td>
                     <td> <strong>Пакет</strong> </td>
-                    <td> <strong>С какой формы</strong> </td>
-                    <td> <strong>Комментарии 1</strong> </td>
-                    <td> <strong>Комментарии 2</strong> </td>
+                    <td> <strong>Форма</strong> </td>
+                    <td> <strong>Комментарии</strong> </td>
+                    <td> <strong>Заметки</strong> </td>
                     <td> <strong>UTM</strong> </td>
                     <!--<td style="width: 10%;"> <strong>From</strong> </td>-->
                     <td style="width: 10%;"> <strong>Статус</strong> </td>
@@ -87,12 +82,11 @@
 
 <script>
 
-
+    $(document).ready(function() {
+        $('#orders-table').DataTable();
+    } );
 
 </script>
-        <!--</div>-->
-    <!--</div>-->
-<!--</div>-->
 
 
 

@@ -13,16 +13,13 @@ body {
 	text-transform: uppercase
 }
 
-<style type="text/css">.no {
-						   display: none!important
-					   }
 
 body {
 	font-size: 14px;
 	background-color: #fff;
 	color: #2c3341;
 	min-width: 1000px;
-	overflow-x: hidden
+	/*overflow-x: hidden*/
 }
 
 .w970 {
@@ -105,8 +102,8 @@ body {
 	font-size : 14px;
 	background-color : #fff;
 	color: #2c3341;
-	min-width: 1000px;
-	overflow-x : hidden;
+	/*min-width: 1000px;*/
+	/*overflow-x : hidden;*/
 }
 .w970 {
 	width: 970px;

@@ -4,39 +4,43 @@
     <title><?=Config::get('site_name')?></title>
     <meta charset="utf-8">
     <link rel='stylesheet' type='text/css' href='/css/bootstrap.min.css' />
-    <link rel='stylesheet' type='text/css' href='/css/styles.min.css' />
+    <link rel='stylesheet' type='text/css' href='https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css' />
+    <link rel='stylesheet' type='text/css' href='/css/styles.css' />
     <link rel='stylesheet' type='text/css' href='/css/styles-admin.css' />
 
-    <script src="/js/libs/jquery-1.11.3.min.js"></script>
+    <script src="/js/libs/jquery-1.12.3.min.js"></script>
     <script src="/js/libs/jquery-ui.min.js"></script>
     <script src="/js/libs/bootstrap.min.js"></script>
     <script src="/ckeditor/ckeditor.js"></script>
     <script src="/js/admin.js"></script>
     <script src="/js/jquery.mousewheel.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+
 
 </head>
 <body>
 
 
-<!--<nav class="navbar navbar-inverse navbar-fixed-top">-->
-    <!--<div class="container">-->
-        <!--<div class="navbar-header">-->
-            <!--<a class="navbar-brand" href="/" target="_blank"><?=Config::get('site_name')?> - <?=__('lng.admin', 'Admin Section')?></a>-->
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/" target="_blank"><?=Config::get('site_name')?> - <?=__('lng.admin', 'Admin Section')?></a>
             <!--<div class="navbar-brand">User: <?php print_r($_SESSION['login']); ?></div>-->
-        <!--</div>-->
-        <!--<div id="navbar" class="collapse navbar-collapse">-->
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
             <?php if ( Session::get('login') ) { ?>
             <ul class="nav navbar-nav">
-                <li <?php if( App::getRouter()->getController() == 'order' ) {?>class="active"<?php } ?>><a href="/admin/order/">Orders</a></li>
+                <li <?php if( App::getRouter()->getController() == 'order' ) {?>class="active"<?php } ?>><a href="/admin/order/">Заявки</a></li>
                 <li><a href="/admin/order/add_ord">Добавить заявку</a> </li>
-                <li><a href="/admin/users/logout">Exit</a></li>
+                <li><a href="/admin/users/logout">Выход из системы</a></li>
             </ul>
             <?php } ?>
-        <!--</div>-->
-    <!--</div>-->
-<!--</nav>-->
+        </div>
+    </div>
+</nav>
 
-<!--<div class="row">-->
+<div class="container1">
 
     <!--<div class="starter-template">-->
 
@@ -49,7 +53,7 @@
         <?=$data['content']?>
     <!--</div>-->
 
-<!--</div>-->
+</div>
 
 
 
