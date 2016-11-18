@@ -4,14 +4,14 @@
 }
 
 tr td {
-    /*white-space: nowrap;*/
+    white-space: nowrap;
 }
 
 /* Sticky 1st column */
 .table-responsive>.fixed-column {
-    position: absolute;
-    display: inline-block;
-    width: auto;
+    /*position: absolute;*/
+    /*display: inline-block;*/
+    /*width: auto;*/
     border-right: 1px solid #ddd;
 }
 
@@ -24,21 +24,22 @@ tr td {
 .table>thead:first-child>tr:first-child>th:first-child
 {
     position: absolute;
-    display: inline-block;
+    /*display: inline-block;*/
     background-color:#F0F8FF;
     /*height:100%;*/
 }
 .table> tbody > tr > td:first-child
 {
     position: absolute;
-    display: inline-block;
+    /*display: inline-block;*/
     background-color:#F0F8FF;
     /*height:100%;*/
 
 }
 .table> tbody > tr > td:nth-child(2)
 {
-    padding-left:40px !important;
+    padding-left:15px !important;
+    text-align: left;
 
 }
 .table>thead:first-child>tr:first-child>th:first-child{
@@ -53,11 +54,13 @@ tr td {
 .table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th{
     padding-left: 18px;
 }
+
+.table> tbody > tr > td:first-child{
+    min-width: 42px;
+}
 /* Sticky 1st column */
 
-tr>td{
-    height: 100px !important;
-}
-.org-name{
-    width: 300px !important;
-}
+
+
+
+/*table { table-layout: fixed;  }*/

@@ -8,10 +8,11 @@
 
 <div class="table-responsive">
 <!--<table id="order-table" class="table table-striped table-bordered" cellspacing="0" width="100%">-->
-<table class="table table-striped table-bordered table-hover fixed-columns">
+<table class="table table-striped table-bordered table-hover fixed-columns" >
     <thead>
     <tr>
         <th>№</th>
+        <th>Управление</th>
         <th>Статус</th>
         <th>Дата</th>
         <th>Город</th>
@@ -24,12 +25,13 @@
         <th>Комментарий</th>
         <th>Заметки</th>
         <th>UTM</th>
-        <th>Управление</th>
+
     </tr>
     </thead>
     <tfoot>
     <tr>
         <th>№</th>
+        <th>Управление</th>
         <th>Статус</th>
         <th>Дата</th>
         <th>Город</th>
@@ -42,42 +44,45 @@
         <th>Комментарий</th>
         <th>Заметки</th>
         <th>UTM</th>
-        <th>Управление</th>
     </tr>
     </tfoot>
     <tbody>
     <?php foreach($data['item'] as $item) { ?>
     <tr>
-        <td><?=$item['id']?></td>
+        <td width=""><?=$item['id']?></td>
+        <td width="" align="center">
+            <a href="/admin/order/edit/<?=$item['id']?>"><button class="btn btn-sm btn-primary" style="padding: 5px 20px;">Редактировать</button></a>
+            <a href="/admin/order/delete/<?=$item['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning" style="padding: 5px 20px;">Удалить</button></a>
+        </td>
         <!-- Статус заказ  // Order status -->
         <?php
 
         if($item['status'] == 0){?>
-        <td><?php echo "Новая заявка";?></td>
+        <td width="150"><?php echo "Новая заявка";?></td>
         <?php }
 
         elseif($item['status'] == 1){?>
-        <td class="success"><?php echo "Успешная оплата";?></td>
+        <td width="150" class="success"><?php echo "Успешная оплата";?></td>
         <?php }
 
         elseif($item['status'] == 2){?>
-        <td class="info"><?php echo "Отправлен счет";?></td>
+        <td width="150" class="info"><?php echo "Отправлен счет";?></td>
         <?php }
 
         elseif($item['status'] == 3){?>
-        <td class="warning"><?php echo "Отмена";?></td>
+        <td width="150" class="warning"><?php echo "Отмена";?></td>
         <?php }
 
         elseif($item['status'] == 4){?>
-        <td class="danger"><?php echo "Прозвон";?></td>
+        <td width="150" class="danger"><?php echo "Прозвон";?></td>
         <?php }
 
         ?>
         <!-- Статус заказ  // Order status end -->
-        <td><?=$item['date']?></td>
-        <td><?=$item['city']?></td>
+        <td width="100"><?=$item['date']?></td>
+        <td width="150"><?=$item['city']?></td>
         <td><?=$item['name']?></td>
-        <td width="300"><?=$item['org_name']?></td>
+        <td class="org-name" width="500"><?=$item['org_name']?></td>
         <td><?=$item['phone']?></td>
         <td><?=$item['email']?></td>
         <td><?=$item['package']?></td>
@@ -85,12 +90,6 @@
         <td><?=$item['comment1']?></td>
         <td><?=$item['comment2']?></td>
         <td><?=$item['utm']?></td>
-
-
-        <td width="250" align="center">
-            <a href="/admin/order/edit/<?=$item['id']?>"><button class="btn btn-sm btn-primary" style="padding: 5px 20px;">Редактировать</button></a>
-            <a href="/admin/order/delete/<?=$item['id']?>" onclick="return confirmDelete();"><button class="btn btn-sm btn-warning" style="padding: 5px 20px;">Удалить</button></a>
-        </td>
     </tr>
     <?php } ?>
     </tbody>
