@@ -42,9 +42,43 @@ tr td {
     width: auto;
     border-right: 1px solid #ddd;
 }
+
 @media(min-width:768px) {
     .table-responsive>.fixed-column {
         display: none;
     }
+}
+
+.table>thead:first-child>tr:first-child>th:first-child
+{
+    position: absolute;
+    display: inline-block;
+    background-color:#F0F8FF;
+    /*height:100%;*/
+}
+.table> tbody > tr > td:first-child
+{
+    position: absolute;
+    display: inline-block;
+    background-color:#F0F8FF;
+    /*height:100%;*/
+
+}
+.table> tbody > tr > td:nth-child(2)
+{
+    padding-left:40px !important;
+
+}
+.table>thead:first-child>tr:first-child>th:first-child{
+    padding: 10px 13px;
+}
+.table> tbody > tr > td:first-child{
+    padding: 13px 8px;
+}
+.table>caption+thead>tr:first-child>td, .table>caption+thead>tr:first-child>th, .table>colgroup+thead>tr:first-child>td, .table>colgroup+thead>tr:first-child>th, .table>thead:first-child>tr:first-child>td, .table>thead:first-child>tr:first-child>th{
+    text-align: center;
+}
+.table-bordered>tbody>tr>td, .table-bordered>tbody>tr>th, .table-bordered>tfoot>tr>td, .table-bordered>tfoot>tr>th, .table-bordered>thead>tr>td, .table-bordered>thead>tr>th{
+    padding-left: 18px;
 }
 /* Sticky 1st column */

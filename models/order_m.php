@@ -16,7 +16,7 @@ class Order_m extends Model {
         // $mail->setLanguage('ru');
         // $mail->SetLanguage("ru","phpmailer/language");
         $mail->setFrom('info@mail.ua', 'Order');
-        $mail->Subject = 'Новый заказ';
+        $mail->Subject = 'Новая заявка';
 
         $mail->AddBCC('oleg.nasteka@gmail.com', 'Oleg Nasteka');     // Add a recipient
         // $mail->AddBCC('oleg.nasteka@gmail.com', 'Oleg Nasteka');  //  Скрытая копия BCC
