@@ -27,5 +27,11 @@
     /*width: 20%;*/
 }
 
+.main-ord-bl{
+    padding: 0 15px !important;
+}
 
+tr td {
+    white-space: nowrap;
+}
 

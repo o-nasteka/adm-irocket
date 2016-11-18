@@ -220,6 +220,7 @@ class Order_m extends Model {
             $sql = "
                 update `order`
                    set name = '{$_POST['name']}',
+                       date = '{$_POST['date']}',
                        org_name = '{$_POST['org_name']}',
                        city = '{$_POST['city']}',
                        email = '{$_POST['email']}',

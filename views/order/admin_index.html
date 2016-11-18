@@ -10,6 +10,7 @@
     <thead>
     <tr>
         <th>№</th>
+        <th>Статус</th>
         <th>Дата</th>
         <th>Город</th>
         <th>Имя</th>
@@ -21,13 +22,13 @@
         <th>Комментарий</th>
         <th>Заметки</th>
         <th>UTM</th>
-        <th>Статус</th>
         <th>Управление</th>
     </tr>
     </thead>
     <tfoot>
     <tr>
         <th>№</th>
+        <th>Статус</th>
         <th>Дата</th>
         <th>Город</th>
         <th>Имя</th>
@@ -39,7 +40,6 @@
         <th>Комментарий</th>
         <th>Заметки</th>
         <th>UTM</th>
-        <th>Статус</th>
         <th>Управление</th>
     </tr>
     </tfoot>
@@ -47,6 +47,31 @@
     <?php foreach($data['item'] as $item) { ?>
     <tr>
         <td><?=$item['id']?></td>
+        <!-- Статус заказ  // Order status -->
+        <?php
+
+        if($item['status'] == 0){?>
+        <td><?php echo "Новый";?></td>
+        <?php }
+
+        elseif($item['status'] == 1){?>
+        <td class="success"><?php echo "Успешная оплата";?></td>
+        <?php }
+
+        elseif($item['status'] == 2){?>
+        <td class="info"><?php echo "Отправлен счет";?></td>
+        <?php }
+
+        elseif($item['status'] == 3){?>
+        <td class="warning"><?php echo "Отмена";?></td>
+        <?php }
+
+        elseif($item['status'] == 4){?>
+        <td class="danger"><?php echo "Прозвон";?></td>
+        <?php }
+
+        ?>
+        <!-- Статус заказ  // Order status end -->
         <td><?=$item['date']?></td>
         <td><?=$item['city']?></td>
         <td><?=$item['name']?></td>
@@ -59,31 +84,6 @@
         <td><?=$item['comment2']?></td>
         <td><?=$item['utm']?></td>
 
-        <!-- Статус заказ  // Order status -->
-        <?php
-
-        if($item['status'] == 0){?>
-        <td><?php echo "Новый";?></td>
-        <?php }
-
-        elseif($item['status'] == 1){?>
-        <td class="bg_oplt_suc"><?php echo "Успешная оплата";?></td>
-        <?php }
-
-        elseif($item['status'] == 2){?>
-        <td class="bg_send"><?php echo "Отправлен счет";?></td>
-        <?php }
-
-        elseif($item['status'] == 3){?>
-        <td class="bg_cenc"><?php echo "Отмена";?></td>
-        <?php }
-
-        elseif($item['status'] == 4){?>
-        <td class="bg_phone"><?php echo "Прозвон";?></td>
-        <?php }
-
-        ?>
-        <!-- Статус заказ  // Order status end -->
 
         <td width="250" align="center">
             <a href="/admin/order/edit/<?=$item['id']?>"><button class="btn btn-sm btn-primary" style="padding: 5px 20px;">Редактировать</button></a>
