@@ -224,6 +224,7 @@ class Order_m extends Model {
                        org_name = '{$_POST['org_name']}',
                        city = '{$_POST['city']}',
                        email = '{$_POST['email']}',
+                       price = '{$_POST['price']}',
                        package = '{$_POST['package']}',
                        from_form = '{$_POST['from_form']}',
                        comment1 = '{$_POST['comment1']}',
