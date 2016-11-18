@@ -71,7 +71,7 @@ class Order_m extends Model {
         $name = $this->db->escape($data['name']);
         $phone = $this->db->escape($data['phone']);
         $title = $this->db->escape($data['title']);
-        $date = date("Y-m-d H:i:s");
+        $date = date("Y-m-d");
 
         if ( !$id ){ // Add new record
             $sql = "
@@ -200,7 +200,7 @@ class Order_m extends Model {
         $phone = $this->db->escape($data['phone']);
         $title = $this->db->escape($data['title']);
         $status = $this->db->escape($data['status']);
-        $date = date("Y-m-d H:i:s");;
+        $date = date("Y-m-d");;
 
 
 
@@ -251,7 +251,7 @@ class Order_m extends Model {
 
         $id = (int)$id;
 
-        $date = date("Y-m-d H:i:s");;
+        $date = date("Y-m-d");;
 
 
         $sql = "
