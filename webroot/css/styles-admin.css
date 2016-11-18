@@ -1,38 +1,10 @@
-.bg_oplt_suc {
-    background-color: #00ff00;
-}
-
-.bg_send{
-    background-color: #269abc;
-}
-
-.bg_cenc{
-    background-color: #979797;
-}
-
-.bg_phone {
-    background-color: palevioletred;
-}
-
-.ovrer {
-    /*overflow-x: scroll;*/
-    padding: 3px;
-}
-
-.ovrer table {
-    width: 100%;
-    /*table-layout: auto;*/
-}
-.ovrer table td {
-    /*width: 20%;*/
-}
 
 .main-ord-bl{
     padding: 0 15px !important;
 }
 
 tr td {
-    white-space: nowrap;
+    /*white-space: nowrap;*/
 }
 
 /* Sticky 1st column */
@@ -82,3 +54,10 @@ tr td {
     padding-left: 18px;
 }
 /* Sticky 1st column */
+
+tr>td{
+    height: 100px !important;
+}
+.org-name{
+    width: 300px !important;
+}
