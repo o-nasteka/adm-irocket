@@ -15,13 +15,13 @@ class Order_m extends Model {
         $mail->CharSet = 'UTF-8';
         // $mail->setLanguage('ru');
         // $mail->SetLanguage("ru","phpmailer/language");
-        $mail->setFrom('info@salon-ss.com.ua', 'Order');
+        $mail->setFrom('info@mail.ua', 'Order');
         $mail->Subject = 'Новый заказ';
 
         $mail->AddBCC('oleg.nasteka@gmail.com', 'Oleg Nasteka');     // Add a recipient
-        $mail->AddBCC('oleg.nasteka@gmail.com', 'Oleg Nasteka');  //  Скрытая копия BCC
+        // $mail->AddBCC('oleg.nasteka@gmail.com', 'Oleg Nasteka');  //  Скрытая копия BCC
         // $mail->addAddress('ellen@example.com');               // Name is optional
-        $mail->addReplyTo('info@lawyer.com', 'Order');
+        $mail->addReplyTo('info@mail.ua', 'Order');
 
         $mail->isHTML(true);                                  // Set email format to HTML
 
@@ -220,6 +220,7 @@ class Order_m extends Model {
             $sql = "
                 update `order`
                    set name = '{$_POST['name']}',
+                       org_name = '{$_POST['org_name']}',
                        city = '{$_POST['city']}',
                        email = '{$_POST['email']}',
                        package = '{$_POST['package']}',
@@ -254,6 +255,7 @@ class Order_m extends Model {
         $sql = "
                 insert into `order`
                    set name = '{$_POST['name']}',
+                       org_name = '{$_POST['org_name']}',
                        city = '{$_POST['city']}',
                        phone = '{$_POST['phone']}',
                        email = '{$_POST['email']}',
