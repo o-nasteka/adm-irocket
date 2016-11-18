@@ -230,6 +230,7 @@ class Order_m extends Model {
                        comment2 = '{$_POST['comment2']}',
                        phone = '{$_POST['phone']}',
                        user_name = '{$_SESSION['login']}',
+                       utm = '{$_SESSION['utm']}',
                        status = '{$_POST['status']}'
 
 
@@ -265,6 +266,7 @@ class Order_m extends Model {
                        comment1 = '{$_POST['comment1']}',
                        comment2 = '{$_POST['comment2']}',
                        user_name = '{$_SESSION['login']}',
+                       utm = '{$_SESSION['utm']}',
                        date = '{$date}'
 
             ";
