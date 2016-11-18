@@ -1,4 +1,5 @@
 /config
+.idea
 .idea/workspace.xml
 .sync
 node_modules
