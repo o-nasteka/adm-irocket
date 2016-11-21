@@ -4,8 +4,11 @@
 
 <h3>Orders edit</h3><br/>
 <form method="post" action="">
-    <input type="hidden" name="id" value="<?=$data['order']['id']?>" />
-
+    <!--<input type="hidden" name="id" value="<?=$data['order']['id']?>" />-->
+    <div class="form-group">
+        <label for="id">ID</label>
+        <input type="text" id="id" name="id" value="<?=htmlspecialchars(@$data['order']['id'])?>" maxlength="25" class="form-control" />
+    </div>
     <div class="form-group">
         <label for="date">Дата</label>
         <input type="text" id="date" name="date" value="<?=htmlspecialchars(@$data['order']['date'])?>" maxlength="25" class="form-control" />
