@@ -245,12 +245,12 @@ class Order_m extends Model {
 
     if($search_string != NULL) {
 
-        $search = $this->db->escape($search_string);
+//        $search = $this->db->escape($search_string);
 
         // Запрос для выборки целевых элементов:
         $sql = "SELECT *, MATCH `city`, `name`, `phone`, `email`, `price`, `package`, `from_form`, `utm`, `comment1`,
-        `comment2`,`org_name`, `numb_ticket` AGAINST ('$search') as relev FROM `order` WHERE MATCH `city`, `name`, `phone`, `email`, `price`, `package`,
-        `from_form`, `utm`, `comment1`, `comment2`,`org_name`, ` numb_ticket` AGAINST ('$search') > 0 ORDER BY relev DESC LIMIT $start,$limit";
+        `comment2`,`org_name`,`numb_ticket` AGAINST ('$search_string') as relev FROM `order` WHERE MATCH `city`, `name`, `phone`, `email`, `price`, `package`,
+        `from_form`, `utm`, `comment1`, `comment2`,`org_name`,`numb_ticket` AGAINST ('$search_string') > 0 ORDER BY relev DESC LIMIT $start,$limit";
 
 
         $res['item']  = $this->db->query($sql);
