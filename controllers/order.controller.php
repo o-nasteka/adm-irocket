@@ -11,11 +11,72 @@ class OrderController extends Controller{
     public function admin_index(){
         $params = App::getRouter()->getParams();
 
+        if(!isset($params[0])){
+            unset($_SESSION['search_string']);
+        }
+        // Параметры поиска
+        if(isset($_POST['search_string']) ){
+            $search_string = $_POST['search_string'];
+            $_SESSION['search_string'] = $_POST['search_string'];
+        }elseif(isset($_SESSION['search_string'])){
+            $search_string = $_SESSION['search_string'];
+        }else {
+            $search_string = NULL;
+        }
+        // Параметры поиска END
+
+
+
+        // Пагинация установка
         if(@$params[0] == 'start'){
             $id_start = $params[1];
         }
+        // Пагинация установка END
 
-        $this->data = $this->model->getList(@$id_start);
+
+        //Сортировка установка
+        if(isset($_POST['sotrin_status'])){
+            $_SESSION['sort_status'] = $_POST['sotrin_status'];
+            $sorting_status =  $_SESSION['sort_status'];
+        }elseif(isset($_SESSION['sort_status'])){
+            $sorting_status =  $_SESSION['sort_status'];
+        }else {
+            $sotrin_status_default = 10;
+        }
+
+
+        if(isset($_POST['sotrin_date'])){
+            $_SESSION['sort_date'] = $_POST['sotrin_date'];
+            $sorting_date =  $_SESSION['sort_date'];
+        }elseif(isset($_SESSION['sort_date'])){
+            $sorting_date =  $_SESSION['sort_date'];
+        }else {
+            $sotrin_date_default = 10;
+        }
+
+        //Сортировка установка END
+
+        $this->data = $this->model->getList(@$id_start , @$sorting_status, @$sorting_date,$search_string);
+
+
+        if(isset($sotrin_status_default)){
+            $this->data['items_sort_status'] = $sotrin_status_default;
+        }else {
+            $this->data['items_sort_status'] = $sorting_status;
+        }
+
+        if(isset($sotrin_date_default)){
+            $this->data['items_sort_date'] = @$sotrin_date_default;
+        }else {
+            $this->data['items_sort_date'] = @$sorting_date;
+        }
+
+
+        // Запомнить номер страници
+        $_SESSION['uri_pag'] = $_SERVER['REQUEST_URI'];
+        // Запомнить номер страници END
+
+
 
     }
 
@@ -47,7 +108,7 @@ class OrderController extends Controller{
             } else {
                 Session::setFlash('Error.');
             }
-            Router::redirect('/admin/order/');
+            Router::redirect($_POST['redirect']);
         }
 
 
@@ -80,7 +141,9 @@ class OrderController extends Controller{
         if(isset($_POST['add_ord'])){
             $result = $this->model->save2($_POST);
 
-            Router::redirect('/admin/order/');
+
+
+            Router::redirect($_SERVER['HTTP_REFERER']);
         }
 
 

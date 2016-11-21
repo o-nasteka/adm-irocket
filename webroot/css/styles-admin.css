@@ -64,3 +64,15 @@ tr td {
 
 
 /*table { table-layout: fixed;  }*/
+
+
+/*Search*/
+.wrapp-1 {
+    border: 1px solid black ;
+    padding: 5px;
+}
+
+.inp-search{
+    margin-top: 25px;
+}
+/*Search End*/

@@ -68,10 +68,10 @@
 
         </select>
     </div>
-
+    <input type="hidden" name="redirect" value="<?php echo $_SESSION['uri_pag']; ?>">
     <input type="submit" class="btn btn-success" value="Сохранить">
 
-    <a href="/admin/order/"><input type="button" class="btn btn-warning" value="Отмена"></a>
+    <a href="<?php echo $_SESSION['uri_pag']; ?>"><input type="button" class="btn btn-warning" value="Отмена"></a>
     <br/><br/>
     <br/><br/>
     <br/><br/>

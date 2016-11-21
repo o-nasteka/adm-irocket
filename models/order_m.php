@@ -97,7 +97,19 @@ class Order_m extends Model {
 
     }
 //
-    public function getList($id_start = null){
+    public function getListSearch($search){
+
+        $search = $this->db->escape($search);
+
+        // Запрос для выборки целевых элементов:
+        $sql = "SELECT *, MATCH `city`, `name`, `phone`, `email`, `price`, `package`, `from_form`, `utm`, `comment1`, `comment2`,`org_name` AGAINST ('$search') as relev FROM `order` WHERE MATCH `city`, `name`, `phone`, `email`, `price`, `package`, `from_form`, `utm`, `comment1`, `comment2`,`org_name` AGAINST ('$search') > 0 ORDER BY relev DESC";
+
+        $res  = $this->db->query($sql);
+
+    }
+
+
+    public function getList($id_start = null,$sorting_status = NULL,$sorting_date = NULL, $search_string = NULL){
         // Результирующий массив с элементами, выбранными с учётом LIMIT:
         $items    = array();
 
@@ -120,23 +132,116 @@ class Order_m extends Model {
         $start    = isset($id_start)  ? (int)$id_start    : 0 ;
         $res['start'] = $start;
 
+        // Сортировка
+        if($sorting_status == 10){
+            $sorting_status = NULL;
+            unset($_SESSION['sort_status']);
+        }
+
+        if($sorting_date == 10){
+            $sorting_date = NULL;
+            unset($_SESSION['sort_date']);
+        }
+
+
+
+        if($sorting_status == NULL && $sorting_date == NULL){
+            $sort_db = 'ORDER BY `id` DESC';
+        }elseif($sorting_status != null && $sorting_date == null){
+
+            if($sorting_status == 0) {
+                $sort_db = 'ORDER BY `status` = 0 DESC, `id` DESC';
+            }
+            if($sorting_status == 1) {
+                $sort_db = 'ORDER BY `status` = 1 DESC, `id` DESC';
+            }
+            if($sorting_status == 2) {
+                $sort_db = 'ORDER BY `status` = 2 DESC, `id` DESC';
+            }
+            if($sorting_status == 3) {
+                $sort_db = 'ORDER BY `status` = 3 DESC, `id` DESC';
+            }
+            if($sorting_status == 4) {
+                $sort_db = 'ORDER BY `status` = 4 DESC, `id` DESC';
+            }
+        }elseif($sorting_status == null && $sorting_date != null){
+
+            if($sorting_date == 0) {
+                $sort_db = 'ORDER BY `id` DESC';
+            }
+            if($sorting_date == 1) {
+                $sort_db = 'ORDER BY `date` ASC';
+            }
+            if($sorting_date == 2) {
+                $sort_db = 'ORDER BY `date` DESC';
+            }
+
+        }elseif($sorting_status != null && $sorting_date != null){
+
+
+            if($sorting_status == 1) {
+                $sort_status_tmp = 'ORDER BY `status` = 1 DESC, `id` DESC';
+            }
+            if($sorting_status == 2) {
+                $sort_status_tmp = 'ORDER BY `status` = 2 DESC, `id` DESC';
+            }
+            if($sorting_status == 3) {
+                $sort_status_tmp = 'ORDER BY `status` = 3 DESC, `id` DESC';
+            }
+            if($sorting_status == 4) {
+                $sort_status_tmp = 'ORDER BY `status` = 4 DESC, `id` DESC';
+            }
+
+
+            if($sorting_date == 1) {
+                $sort_date_tmp = ',`date` DESC';
+            }
+            if($sorting_date == 2) {
+                $sort_date_tmp = ', `date` ASC';
+            }
+
+            $sort_db = $sort_status_tmp . $sort_date_tmp;
+
+        }
+        // Сортировка END
+
+
+    if($search_string != NULL) {
+
+        $search = $this->db->escape($search_string);
+
+        // Запрос для выборки целевых элементов:
+        $sql = "SELECT *, MATCH `city`, `name`, `phone`, `email`, `price`, `package`, `from_form`, `utm`, `comment1`,
+        `comment2`,`org_name` AGAINST ('$search') as relev FROM `order` WHERE MATCH `city`, `name`, `phone`, `email`, `price`, `package`,
+        `from_form`, `utm`, `comment1`, `comment2`,`org_name` AGAINST ('$search') > 0 ORDER BY relev DESC LIMIT $start,$limit";
+
+
+        $res['item']  = $this->db->query($sql);
+
+    }else {
 
         // Запрос для выборки целевых элементов:
         $sql = 'SELECT           ' .
             ' * 				 ' .
             'FROM             ' .
             '  `order`     ' .
-            'ORDER BY `id` DESC    ' . // отсротировать от последннего заказа
+            $sort_db . // сортировка
 
-            'LIMIT            ' .
-            $start . ',   ' . $limit   . '
+            ' LIMIT            ' .
+            $start . ',   ' . $limit . '
 
              ';
 
+        //        echo $sorting_status .'<br>';
+        //        echo $sorting_date .'<br>';
+        //
+        //        echo $sql;
+        //        exit;
 
-        $res['item']  = $this->db->query($sql);
 
+        $res['item'] = $this->db->query($sql);
 
+    }
 
 
         // СОБСТВЕННО, ПОСТРАНИЧНАЯ НАВИГАЦИЯ:
@@ -157,13 +262,21 @@ class Order_m extends Model {
         // на ещё одной странице.
         $pageCount = ceil( $allItems / $limit);
 
+        // Сортировка в пагинацию
+//        if(isset($sorting_status)){
+//            $sort_stat_link = '/status_sort/'. $sorting_status;
+//        } if(isset($sorting_date)){
+//            $sort_date_link = '/date_sort/'. $sorting_date;
+//        }
+        // Сортировка в пагинацию END
+
         for( $i = 0; $i < $pageCount; $i++ ) {
             // Здесь ($i * $limit) - вычисляет нужное для каждой страницы  смещение,
             // а ($i + 1) - для того что бы нумерация страниц начиналась с 1, а не с 0
             if($start == ($i * $limit)) {
-                @$res['html'] .= '<li class="active" ><a href="/admin/order/index/start/' . ($i * $limit) . '">' . ($i + 1) . '<span class="sr-only">(current)</span></a></li>';
+                @$res['html'] .= '<li class="active" ><a href="/admin/order/index/start/' . ($i * $limit) .' ">' . ($i + 1) . '<span class="sr-only">(current)</span></a></li>';
             }else {
-                @$res['html'] .= '<li><a href="/admin/order/index/start/' . ($i * $limit) . '">' . ($i + 1) . '</a></li>';
+                @$res['html'] .= '<li><a href="/admin/order/index/start/' . ($i * $limit) .' ">' . ($i + 1) . '</a></li>';
             }
         }
 //
@@ -264,6 +377,8 @@ class Order_m extends Model {
                        from_form = '{$_POST['from_form']}',
                        comment1 = '{$_POST['comment1']}',
                        comment2 = '{$_POST['comment2']}',
+                       status = '{$_POST['status']}',
+                       utm = '{$_POST['utm']}',
                        user_name = '{$_SESSION['login']}',
                        date = '{$date}'
 
