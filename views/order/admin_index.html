@@ -11,7 +11,7 @@
             <div class="col-lg-4">
                 <form id="search-our" action="/admin/order" method="post">
                     <div class=" inp-search input-group">
-                        <input type="text" name="search_string" value="" class="form-control" placeholder="search for...">
+                        <input type="text" name="search_string" value="" class="form-control" placeholder="Поиск клиента по базе">
                           <span class="input-group-btn">
                             <button form="search-our" class="btn btn-default" type="submit">Найти</button>
                           </span>
@@ -20,12 +20,12 @@
             </div>
 
         <div class="col-lg-3">
-            <form action="" method="post">
+            <form action="/admin/order" method="post">
                 <div class="form-group">
 
                     <label for="sel2">Статус</label>
                     <select name="sotrin_status" class="form-control" id="sel2" onchange="this.form.submit()">
-                        <option <?php if(@$data['items_sort_status'] == 10){echo 'selected';}?> value="10">Сортировка отключина</option>
+                        <option <?php if(@$data['items_sort_status'] == 10){echo 'selected';}?> value="10">Сортировка отключена</option>
                         <option <?php if(@$data['items_sort_status'] == 0){echo 'selected';}?> value="0">Новая заявка</option>
                         <option <?php if(@$data['items_sort_status'] == 1){echo 'selected';}?> value="1">Успешная оплата</option>
                         <option <?php if(@$data['items_sort_status'] == 2){echo 'selected';}?> value="2">Отправлен счет</option>
@@ -37,11 +37,11 @@
             </form>
         </div>
         <div class="col-lg-3">
-            <form action="" method="post">
+            <form action="/admin/order" method="post">
                 <div class="form-group">
                     <label for="sel3">Дата</label>
                     <select name="sotrin_date" class="form-control" id="sel3" onchange="this.form.submit()">
-                        <option <?php if(@$data['items_sort_date'] == 0){echo 'selected';}?> value="10">Сортировка отключина</option>
+                        <option <?php if(@$data['items_sort_date'] == 0){echo 'selected';}?> value="10">Сортировка отключена</option>
                         <option <?php if(@$data['items_sort_date'] == 1){echo 'selected';}?> value="1">По возрастанию</option>
                         <option <?php if(@$data['items_sort_date'] == 2){echo 'selected';}?> value="2">По убыванию</option>
                     </select>
