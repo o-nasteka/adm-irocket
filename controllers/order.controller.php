@@ -1,5 +1,12 @@
 <?php
 
+// Soft pdf crater include
+
+//require ($_SERVER['DOCUMENT_ROOT'] . '/vendor/autoload.php');
+//use Dompdf\Dompdf;
+//use Dompdf\Options;
+// Soft pdf crater include END
+
 class OrderController extends Controller{
 
     public function __construct($data = array()){
@@ -8,8 +15,63 @@ class OrderController extends Controller{
 
     }
 
+
     public function admin_index(){
+
+
         $params = App::getRouter()->getParams();
+
+        if(isset($_POST['ticket_checket_click'])){
+
+            if(!count($_POST['ticket_check'])){
+                Router::redirect('/admin/order/');
+            }
+
+            // func ramd number invoive
+            function rand_num(){
+            //    $letter = chr(rand(97,122));
+                $letter_1 = chr(rand(65,90));
+                $letter_2 = chr(rand(65,90));
+                $rand_numb = rand(0,100000);
+
+                $number = $letter_1 . $letter_2 . $rand_numb ;
+                return $number;
+
+            }
+            // func ramd number invoive END
+
+//            echo '<pre>';
+//            print_r ($_POST);
+//            echo '</pre>';
+////            exit;
+
+            $res_email = $this->data = $this->model->ticket($_POST['ticket_check']);
+
+            if($res_email){
+
+                $email_count = count($res_email);
+                $email_count = $email_count - 1;
+                for($i = 0 ; $i <= $email_count; $i++){
+                    $res_email[$i]['number']  = rand_num();
+
+                }
+
+
+
+                // to base number
+                $this->data = $this->model->ticket_to_base($res_email);
+
+
+                $_SESSION['email_check'] = $res_email ;
+
+                Router::redirect('/webroot/ticket/ticket.php');
+
+            }
+
+
+
+        }
+
 
         if(!isset($params[0])){
             unset($_SESSION['search_string']);

@@ -108,6 +108,43 @@ class Order_m extends Model {
 
     }
 
+    public function ticket($data){
+
+//        $search = $this->db->escape(data);
+        $string_id = '';
+        foreach($data as $k=>$v){
+            $string_id .= "$v,";
+
+        }
+        $string_id = substr($string_id, 0, -1);
+
+
+
+        $sql =" SELECT `id`,`email` FROM `order` WHERE `id` in($string_id)";
+
+        $res  = $this->db->query($sql);
+
+        return $res;
+    }
+
+
+    public function ticket_to_base($data){
+
+        foreach($data as $k=>$v){
+
+            $sql =" update `order`
+                   set numb_ticket = '{$v['number']}'
+
+                   where `id` = '{$v['id']}'";
+
+            $res  = $this->db->query($sql);
+
+        }
+
+
+
+    }
+
 
     public function getList($id_start = null,$sorting_status = NULL,$sorting_date = NULL, $search_string = NULL){
         // Результирующий массив с элементами, выбранными с учётом LIMIT:
@@ -212,8 +249,8 @@ class Order_m extends Model {
 
         // Запрос для выборки целевых элементов:
         $sql = "SELECT *, MATCH `city`, `name`, `phone`, `email`, `price`, `package`, `from_form`, `utm`, `comment1`,
-        `comment2`,`org_name` AGAINST ('$search') as relev FROM `order` WHERE MATCH `city`, `name`, `phone`, `email`, `price`, `package`,
-        `from_form`, `utm`, `comment1`, `comment2`,`org_name` AGAINST ('$search') > 0 ORDER BY relev DESC LIMIT $start,$limit";
+        `comment2`,`org_name`, `numb_ticket` AGAINST ('$search') as relev FROM `order` WHERE MATCH `city`, `name`, `phone`, `email`, `price`, `package`,
+        `from_form`, `utm`, `comment1`, `comment2`,`org_name`, ` numb_ticket` AGAINST ('$search') > 0 ORDER BY relev DESC LIMIT $start,$limit";
 
 
         $res['item']  = $this->db->query($sql);

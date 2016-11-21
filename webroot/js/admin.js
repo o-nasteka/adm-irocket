@@ -1,5 +1,5 @@
 function confirmDelete(){
-    if ( confirm("Delete this item?") ){
+    if ( confirm("Отправить билет на E-mail?") ){
         return true;
     } else {
         return false;
