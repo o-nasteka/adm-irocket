@@ -19,3 +19,8 @@ $(function(){
         $(this).height($tableClass.find('tr:eq(' + i + ')').height());
     });
 });
+
+$(".no-submit").click(function(event) {
+    event.preventDefault();
+
+});

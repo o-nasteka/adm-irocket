@@ -161,6 +161,8 @@ class OrderController extends Controller{
     // Admin edit order
     public function admin_edit(){
 
+
+
         if ( $_POST ){
 
             $id = isset($_POST['id']) ? $_POST['id'] : null;
@@ -174,6 +176,7 @@ class OrderController extends Controller{
         }
 
 
+
         if ( isset($this->params[0]) ){
             $this->data['order'] = $this->model->getById($this->params[0]);
 
@@ -182,6 +185,7 @@ class OrderController extends Controller{
             Router::redirect('/admin/order/');
         }
     }
+
 
     // Admin delete order
     public function admin_delete(){

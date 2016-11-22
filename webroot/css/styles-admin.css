@@ -86,3 +86,8 @@ tr td {
 .butt-send-email {
     margin: 25px 0 0 0;
 }
+
+.edit_but{
+    background-color: #337AB7;
+    color: #ffffff;
+}
